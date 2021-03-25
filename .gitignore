@@ -1,6 +1,7 @@
-# Generated files
-/docs/
-/lib/
+# Gems
+vendor/bundle/
+.bundle/
+.sass-cache/
 
 # Vim shit
 *.swp

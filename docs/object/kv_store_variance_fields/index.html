@@ -1,0 +1,3572 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="kv_store_variance_fields GraphQL documentation">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>kv_store_variance_fields</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>
+
+    // Add anchors on DOMContentLoaded
+    document.addEventListener("DOMContentLoaded", function(event) {
+      anchors.options = {
+        placement: 'left',
+        visible: 'hover',
+        icon: '¶'
+      };
+      anchors.add('h2, h3, h4, h5, h6, .anchored');
+    });
+
+    </script>
+  </head>
+  <body>
+
+    <div id="wrap">
+      <div id="header">
+      </div>
+      <div id="sidebar">
+        <ul class="categories">
+  <li>
+    <ul class="menu-root">
+      <li>
+        <a href="/">GraphQL Reference</a>
+    </ul>
+  </li>
+
+  <li>
+    <p>Queries</p>
+    <ul class="menu-root">
+      <li>
+        <a href="/operation/query/" class="sidebar-link">
+          Query
+        </a>
+      </li>
+      <li>
+        <a href="/operation/mutation/" class="sidebar-link">
+          Mutation
+        </a>
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/object">Objects</a></p>
+    <ul class="menu-root">
+      
+        
+      <li>
+        <a href="/object/aceresult/" class="sidebar-link">
+          ACEResult
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/cat/" class="sidebar-link">
+          Cat
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/composeresult/" class="sidebar-link">
+          ComposeResult
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/contextresult/" class="sidebar-link">
+          ContextResult
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/corefcluster/" class="sidebar-link">
+          CorefCluster
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/corefscores/" class="sidebar-link">
+          CorefScores
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/dialogalternative/" class="sidebar-link">
+          DialogAlternative
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/docextension/" class="sidebar-link">
+          DocExtension
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/matchintentoutput/" class="sidebar-link">
+          MatchIntentOutput
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/nlpbatch/" class="sidebar-link">
+          NlpBatch
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/nlpdoc/" class="sidebar-link">
+          NlpDoc
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/pairsimilarity/" class="sidebar-link">
+          PairSimilarity
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/paraphrase/" class="sidebar-link">
+          Paraphrase
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/phrasematch/" class="sidebar-link">
+          PhraseMatch
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/ssmlresult/" class="sidebar-link">
+          SSMLResult
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/sttresult/" class="sidebar-link">
+          STTResult
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/scores/" class="sidebar-link">
+          Scores
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/sentencesimilarityscores/" class="sidebar-link">
+          SentenceSimilarityScores
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/serviceinfo/" class="sidebar-link">
+          ServiceInfo
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/slingdocument/" class="sidebar-link">
+          SlingDocument
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/slingmention/" class="sidebar-link">
+          SlingMention
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/span/" class="sidebar-link">
+          Span
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/spanextension/" class="sidebar-link">
+          SpanExtension
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/ttsresult/" class="sidebar-link">
+          TTSResult
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/textalternative/" class="sidebar-link">
+          TextAlternative
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/token/" class="sidebar-link">
+          Token
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/tokenextension/" class="sidebar-link">
+          TokenExtension
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/wordmatch/" class="sidebar-link">
+          WordMatch
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/__directive/" class="sidebar-link">
+          __Directive
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/__enumvalue/" class="sidebar-link">
+          __EnumValue
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/__field/" class="sidebar-link">
+          __Field
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/__inputvalue/" class="sidebar-link">
+          __InputValue
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/__schema/" class="sidebar-link">
+          __Schema
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/__type/" class="sidebar-link">
+          __Type
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/apps/" class="sidebar-link">
+          apps
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/apps_aggregate/" class="sidebar-link">
+          apps_aggregate
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/apps_aggregate_fields/" class="sidebar-link">
+          apps_aggregate_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/apps_avg_fields/" class="sidebar-link">
+          apps_avg_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/apps_max_fields/" class="sidebar-link">
+          apps_max_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/apps_min_fields/" class="sidebar-link">
+          apps_min_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/apps_mutation_response/" class="sidebar-link">
+          apps_mutation_response
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/apps_stddev_fields/" class="sidebar-link">
+          apps_stddev_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/apps_stddev_pop_fields/" class="sidebar-link">
+          apps_stddev_pop_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/apps_stddev_samp_fields/" class="sidebar-link">
+          apps_stddev_samp_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/apps_sum_fields/" class="sidebar-link">
+          apps_sum_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/apps_var_pop_fields/" class="sidebar-link">
+          apps_var_pop_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/apps_var_samp_fields/" class="sidebar-link">
+          apps_var_samp_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/apps_variance_fields/" class="sidebar-link">
+          apps_variance_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/atomic_data/" class="sidebar-link">
+          atomic_data
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/atomic_data_aggregate/" class="sidebar-link">
+          atomic_data_aggregate
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/atomic_data_aggregate_fields/" class="sidebar-link">
+          atomic_data_aggregate_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/atomic_data_max_fields/" class="sidebar-link">
+          atomic_data_max_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/atomic_data_min_fields/" class="sidebar-link">
+          atomic_data_min_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/atomic_data_mutation_response/" class="sidebar-link">
+          atomic_data_mutation_response
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conceptnet_data/" class="sidebar-link">
+          conceptnet_data
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conceptnet_data_aggregate/" class="sidebar-link">
+          conceptnet_data_aggregate
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conceptnet_data_aggregate_fields/" class="sidebar-link">
+          conceptnet_data_aggregate_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conceptnet_data_avg_fields/" class="sidebar-link">
+          conceptnet_data_avg_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conceptnet_data_max_fields/" class="sidebar-link">
+          conceptnet_data_max_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conceptnet_data_min_fields/" class="sidebar-link">
+          conceptnet_data_min_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conceptnet_data_mutation_response/" class="sidebar-link">
+          conceptnet_data_mutation_response
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conceptnet_data_stddev_fields/" class="sidebar-link">
+          conceptnet_data_stddev_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conceptnet_data_stddev_pop_fields/" class="sidebar-link">
+          conceptnet_data_stddev_pop_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conceptnet_data_stddev_samp_fields/" class="sidebar-link">
+          conceptnet_data_stddev_samp_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conceptnet_data_sum_fields/" class="sidebar-link">
+          conceptnet_data_sum_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conceptnet_data_var_pop_fields/" class="sidebar-link">
+          conceptnet_data_var_pop_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conceptnet_data_var_samp_fields/" class="sidebar-link">
+          conceptnet_data_var_samp_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conceptnet_data_variance_fields/" class="sidebar-link">
+          conceptnet_data_variance_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conversations/" class="sidebar-link">
+          conversations
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conversations_aggregate/" class="sidebar-link">
+          conversations_aggregate
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conversations_aggregate_fields/" class="sidebar-link">
+          conversations_aggregate_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conversations_avg_fields/" class="sidebar-link">
+          conversations_avg_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conversations_max_fields/" class="sidebar-link">
+          conversations_max_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conversations_min_fields/" class="sidebar-link">
+          conversations_min_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conversations_mutation_response/" class="sidebar-link">
+          conversations_mutation_response
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conversations_stddev_fields/" class="sidebar-link">
+          conversations_stddev_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conversations_stddev_pop_fields/" class="sidebar-link">
+          conversations_stddev_pop_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conversations_stddev_samp_fields/" class="sidebar-link">
+          conversations_stddev_samp_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conversations_sum_fields/" class="sidebar-link">
+          conversations_sum_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conversations_var_pop_fields/" class="sidebar-link">
+          conversations_var_pop_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conversations_var_samp_fields/" class="sidebar-link">
+          conversations_var_samp_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/conversations_variance_fields/" class="sidebar-link">
+          conversations_variance_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/developers/" class="sidebar-link">
+          developers
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/developers_aggregate/" class="sidebar-link">
+          developers_aggregate
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/developers_aggregate_fields/" class="sidebar-link">
+          developers_aggregate_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/developers_avg_fields/" class="sidebar-link">
+          developers_avg_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/developers_max_fields/" class="sidebar-link">
+          developers_max_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/developers_min_fields/" class="sidebar-link">
+          developers_min_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/developers_mutation_response/" class="sidebar-link">
+          developers_mutation_response
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/developers_stddev_fields/" class="sidebar-link">
+          developers_stddev_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/developers_stddev_pop_fields/" class="sidebar-link">
+          developers_stddev_pop_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/developers_stddev_samp_fields/" class="sidebar-link">
+          developers_stddev_samp_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/developers_sum_fields/" class="sidebar-link">
+          developers_sum_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/developers_var_pop_fields/" class="sidebar-link">
+          developers_var_pop_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/developers_var_samp_fields/" class="sidebar-link">
+          developers_var_samp_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/developers_variance_fields/" class="sidebar-link">
+          developers_variance_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/end_users/" class="sidebar-link">
+          end_users
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/end_users_aggregate/" class="sidebar-link">
+          end_users_aggregate
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/end_users_aggregate_fields/" class="sidebar-link">
+          end_users_aggregate_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/end_users_avg_fields/" class="sidebar-link">
+          end_users_avg_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/end_users_max_fields/" class="sidebar-link">
+          end_users_max_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/end_users_min_fields/" class="sidebar-link">
+          end_users_min_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/end_users_mutation_response/" class="sidebar-link">
+          end_users_mutation_response
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/end_users_stddev_fields/" class="sidebar-link">
+          end_users_stddev_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/end_users_stddev_pop_fields/" class="sidebar-link">
+          end_users_stddev_pop_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/end_users_stddev_samp_fields/" class="sidebar-link">
+          end_users_stddev_samp_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/end_users_sum_fields/" class="sidebar-link">
+          end_users_sum_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/end_users_var_pop_fields/" class="sidebar-link">
+          end_users_var_pop_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/end_users_var_samp_fields/" class="sidebar-link">
+          end_users_var_samp_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/end_users_variance_fields/" class="sidebar-link">
+          end_users_variance_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/events/" class="sidebar-link">
+          events
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/events_aggregate/" class="sidebar-link">
+          events_aggregate
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/events_aggregate_fields/" class="sidebar-link">
+          events_aggregate_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/events_max_fields/" class="sidebar-link">
+          events_max_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/events_min_fields/" class="sidebar-link">
+          events_min_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/events_mutation_response/" class="sidebar-link">
+          events_mutation_response
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/history/" class="sidebar-link">
+          history
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/history_aggregate/" class="sidebar-link">
+          history_aggregate
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/history_aggregate_fields/" class="sidebar-link">
+          history_aggregate_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/history_avg_fields/" class="sidebar-link">
+          history_avg_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/history_max_fields/" class="sidebar-link">
+          history_max_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/history_min_fields/" class="sidebar-link">
+          history_min_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/history_stddev_fields/" class="sidebar-link">
+          history_stddev_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/history_stddev_pop_fields/" class="sidebar-link">
+          history_stddev_pop_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/history_stddev_samp_fields/" class="sidebar-link">
+          history_stddev_samp_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/history_sum_fields/" class="sidebar-link">
+          history_sum_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/history_var_pop_fields/" class="sidebar-link">
+          history_var_pop_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/history_var_samp_fields/" class="sidebar-link">
+          history_var_samp_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/history_variance_fields/" class="sidebar-link">
+          history_variance_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/kv_scope_enum/" class="sidebar-link">
+          kv_scope_enum
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/kv_scope_enum_aggregate/" class="sidebar-link">
+          kv_scope_enum_aggregate
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/kv_scope_enum_aggregate_fields/" class="sidebar-link">
+          kv_scope_enum_aggregate_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/kv_scope_enum_max_fields/" class="sidebar-link">
+          kv_scope_enum_max_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/kv_scope_enum_min_fields/" class="sidebar-link">
+          kv_scope_enum_min_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/kv_scope_enum_mutation_response/" class="sidebar-link">
+          kv_scope_enum_mutation_response
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/kv_store/" class="sidebar-link">
+          kv_store
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/kv_store_aggregate/" class="sidebar-link">
+          kv_store_aggregate
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/kv_store_aggregate_fields/" class="sidebar-link">
+          kv_store_aggregate_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/kv_store_avg_fields/" class="sidebar-link">
+          kv_store_avg_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/kv_store_max_fields/" class="sidebar-link">
+          kv_store_max_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/kv_store_min_fields/" class="sidebar-link">
+          kv_store_min_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/kv_store_mutation_response/" class="sidebar-link">
+          kv_store_mutation_response
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/kv_store_stddev_fields/" class="sidebar-link">
+          kv_store_stddev_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/kv_store_stddev_pop_fields/" class="sidebar-link">
+          kv_store_stddev_pop_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/kv_store_stddev_samp_fields/" class="sidebar-link">
+          kv_store_stddev_samp_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/kv_store_sum_fields/" class="sidebar-link">
+          kv_store_sum_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/kv_store_var_pop_fields/" class="sidebar-link">
+          kv_store_var_pop_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/kv_store_var_samp_fields/" class="sidebar-link">
+          kv_store_var_samp_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/kv_store_variance_fields/" class="sidebar-link">
+          kv_store_variance_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/last_utterance/" class="sidebar-link">
+          last_utterance
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/last_utterance_aggregate/" class="sidebar-link">
+          last_utterance_aggregate
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/last_utterance_aggregate_fields/" class="sidebar-link">
+          last_utterance_aggregate_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/last_utterance_avg_fields/" class="sidebar-link">
+          last_utterance_avg_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/last_utterance_max_fields/" class="sidebar-link">
+          last_utterance_max_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/last_utterance_min_fields/" class="sidebar-link">
+          last_utterance_min_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/last_utterance_stddev_fields/" class="sidebar-link">
+          last_utterance_stddev_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/last_utterance_stddev_pop_fields/" class="sidebar-link">
+          last_utterance_stddev_pop_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/last_utterance_stddev_samp_fields/" class="sidebar-link">
+          last_utterance_stddev_samp_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/last_utterance_sum_fields/" class="sidebar-link">
+          last_utterance_sum_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/last_utterance_var_pop_fields/" class="sidebar-link">
+          last_utterance_var_pop_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/last_utterance_var_samp_fields/" class="sidebar-link">
+          last_utterance_var_samp_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/last_utterance_variance_fields/" class="sidebar-link">
+          last_utterance_variance_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/objects/" class="sidebar-link">
+          objects
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/objects_aggregate/" class="sidebar-link">
+          objects_aggregate
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/objects_aggregate_fields/" class="sidebar-link">
+          objects_aggregate_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/objects_avg_fields/" class="sidebar-link">
+          objects_avg_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/objects_max_fields/" class="sidebar-link">
+          objects_max_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/objects_min_fields/" class="sidebar-link">
+          objects_min_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/objects_mutation_response/" class="sidebar-link">
+          objects_mutation_response
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/objects_stddev_fields/" class="sidebar-link">
+          objects_stddev_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/objects_stddev_pop_fields/" class="sidebar-link">
+          objects_stddev_pop_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/objects_stddev_samp_fields/" class="sidebar-link">
+          objects_stddev_samp_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/objects_sum_fields/" class="sidebar-link">
+          objects_sum_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/objects_var_pop_fields/" class="sidebar-link">
+          objects_var_pop_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/objects_var_samp_fields/" class="sidebar-link">
+          objects_var_samp_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/objects_variance_fields/" class="sidebar-link">
+          objects_variance_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/speaker_type_enum/" class="sidebar-link">
+          speaker_type_enum
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/speaker_type_enum_aggregate/" class="sidebar-link">
+          speaker_type_enum_aggregate
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/speaker_type_enum_aggregate_fields/" class="sidebar-link">
+          speaker_type_enum_aggregate_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/speaker_type_enum_max_fields/" class="sidebar-link">
+          speaker_type_enum_max_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/speaker_type_enum_min_fields/" class="sidebar-link">
+          speaker_type_enum_min_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/speaker_type_enum_mutation_response/" class="sidebar-link">
+          speaker_type_enum_mutation_response
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/subscription_root/" class="sidebar-link">
+          subscription_root
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/utterances/" class="sidebar-link">
+          utterances
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/utterances_aggregate/" class="sidebar-link">
+          utterances_aggregate
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/utterances_aggregate_fields/" class="sidebar-link">
+          utterances_aggregate_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/utterances_avg_fields/" class="sidebar-link">
+          utterances_avg_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/utterances_max_fields/" class="sidebar-link">
+          utterances_max_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/utterances_min_fields/" class="sidebar-link">
+          utterances_min_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/utterances_mutation_response/" class="sidebar-link">
+          utterances_mutation_response
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/utterances_stddev_fields/" class="sidebar-link">
+          utterances_stddev_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/utterances_stddev_pop_fields/" class="sidebar-link">
+          utterances_stddev_pop_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/utterances_stddev_samp_fields/" class="sidebar-link">
+          utterances_stddev_samp_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/utterances_sum_fields/" class="sidebar-link">
+          utterances_sum_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/utterances_var_pop_fields/" class="sidebar-link">
+          utterances_var_pop_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/utterances_var_samp_fields/" class="sidebar-link">
+          utterances_var_samp_fields
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/object/utterances_variance_fields/" class="sidebar-link">
+          utterances_variance_fields
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/operation/mutation">Mutations</a></p>
+    <ul class="menu-root">
+      
+      
+      <li>
+        <a href="/mutation/delete_apps/" class="sidebar-link">
+          delete_apps
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/delete_atomic_data/" class="sidebar-link">
+          delete_atomic_data
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/delete_conceptnet_data/" class="sidebar-link">
+          delete_conceptnet_data
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/delete_conversations/" class="sidebar-link">
+          delete_conversations
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/delete_developers/" class="sidebar-link">
+          delete_developers
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/delete_end_users/" class="sidebar-link">
+          delete_end_users
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/delete_events/" class="sidebar-link">
+          delete_events
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/delete_kv_scope_enum/" class="sidebar-link">
+          delete_kv_scope_enum
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/delete_kv_scope_enum_by_pk/" class="sidebar-link">
+          delete_kv_scope_enum_by_pk
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/delete_kv_store/" class="sidebar-link">
+          delete_kv_store
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/delete_kv_store_by_pk/" class="sidebar-link">
+          delete_kv_store_by_pk
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/delete_objects/" class="sidebar-link">
+          delete_objects
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/delete_objects_by_pk/" class="sidebar-link">
+          delete_objects_by_pk
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/delete_speaker_type_enum/" class="sidebar-link">
+          delete_speaker_type_enum
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/delete_speaker_type_enum_by_pk/" class="sidebar-link">
+          delete_speaker_type_enum_by_pk
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/delete_utterances/" class="sidebar-link">
+          delete_utterances
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_apps/" class="sidebar-link">
+          insert_apps
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_apps_one/" class="sidebar-link">
+          insert_apps_one
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_atomic_data/" class="sidebar-link">
+          insert_atomic_data
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_atomic_data_one/" class="sidebar-link">
+          insert_atomic_data_one
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_conceptnet_data/" class="sidebar-link">
+          insert_conceptnet_data
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_conceptnet_data_one/" class="sidebar-link">
+          insert_conceptnet_data_one
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_conversations/" class="sidebar-link">
+          insert_conversations
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_conversations_one/" class="sidebar-link">
+          insert_conversations_one
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_developers/" class="sidebar-link">
+          insert_developers
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_developers_one/" class="sidebar-link">
+          insert_developers_one
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_end_users/" class="sidebar-link">
+          insert_end_users
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_end_users_one/" class="sidebar-link">
+          insert_end_users_one
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_events/" class="sidebar-link">
+          insert_events
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_events_one/" class="sidebar-link">
+          insert_events_one
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_kv_scope_enum/" class="sidebar-link">
+          insert_kv_scope_enum
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_kv_scope_enum_one/" class="sidebar-link">
+          insert_kv_scope_enum_one
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_kv_store/" class="sidebar-link">
+          insert_kv_store
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_kv_store_one/" class="sidebar-link">
+          insert_kv_store_one
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_objects/" class="sidebar-link">
+          insert_objects
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_objects_one/" class="sidebar-link">
+          insert_objects_one
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_speaker_type_enum/" class="sidebar-link">
+          insert_speaker_type_enum
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_speaker_type_enum_one/" class="sidebar-link">
+          insert_speaker_type_enum_one
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_utterances/" class="sidebar-link">
+          insert_utterances
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/insert_utterances_one/" class="sidebar-link">
+          insert_utterances_one
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/update_apps/" class="sidebar-link">
+          update_apps
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/update_atomic_data/" class="sidebar-link">
+          update_atomic_data
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/update_conceptnet_data/" class="sidebar-link">
+          update_conceptnet_data
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/update_conversations/" class="sidebar-link">
+          update_conversations
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/update_developers/" class="sidebar-link">
+          update_developers
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/update_end_users/" class="sidebar-link">
+          update_end_users
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/update_events/" class="sidebar-link">
+          update_events
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/update_kv_scope_enum/" class="sidebar-link">
+          update_kv_scope_enum
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/update_kv_scope_enum_by_pk/" class="sidebar-link">
+          update_kv_scope_enum_by_pk
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/update_kv_store/" class="sidebar-link">
+          update_kv_store
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/update_kv_store_by_pk/" class="sidebar-link">
+          update_kv_store_by_pk
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/update_objects/" class="sidebar-link">
+          update_objects
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/update_objects_by_pk/" class="sidebar-link">
+          update_objects_by_pk
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/update_speaker_type_enum/" class="sidebar-link">
+          update_speaker_type_enum
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/update_speaker_type_enum_by_pk/" class="sidebar-link">
+          update_speaker_type_enum_by_pk
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/mutation/update_utterances/" class="sidebar-link">
+          update_utterances
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/interface">Interfaces</a></p>
+    <ul class="menu-root">
+      
+        
+        <li>
+          <a href="/interface/container/" class="sidebar-link">
+            Container
+          </a>
+        </li>
+      
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/enum">Enums</a></p>
+    <ul class="menu-root">
+      
+      
+      <li>
+        <a href="/enum/aceoutputtype/" class="sidebar-link">
+          ACEOutputType
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/audioencoding/" class="sidebar-link">
+          AudioEncoding
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/encoding/" class="sidebar-link">
+          Encoding
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/servicename/" class="sidebar-link">
+          ServiceName
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/__directivelocation/" class="sidebar-link">
+          __DirectiveLocation
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/__typekind/" class="sidebar-link">
+          __TypeKind
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/apps_constraint/" class="sidebar-link">
+          apps_constraint
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/apps_select_column/" class="sidebar-link">
+          apps_select_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/apps_update_column/" class="sidebar-link">
+          apps_update_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/atomic_data_select_column/" class="sidebar-link">
+          atomic_data_select_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/conceptnet_data_constraint/" class="sidebar-link">
+          conceptnet_data_constraint
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/conceptnet_data_select_column/" class="sidebar-link">
+          conceptnet_data_select_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/conceptnet_data_update_column/" class="sidebar-link">
+          conceptnet_data_update_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/conversations_constraint/" class="sidebar-link">
+          conversations_constraint
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/conversations_select_column/" class="sidebar-link">
+          conversations_select_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/conversations_update_column/" class="sidebar-link">
+          conversations_update_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/developers_constraint/" class="sidebar-link">
+          developers_constraint
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/developers_select_column/" class="sidebar-link">
+          developers_select_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/developers_update_column/" class="sidebar-link">
+          developers_update_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/end_users_constraint/" class="sidebar-link">
+          end_users_constraint
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/end_users_select_column/" class="sidebar-link">
+          end_users_select_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/end_users_update_column/" class="sidebar-link">
+          end_users_update_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/events_select_column/" class="sidebar-link">
+          events_select_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/history_select_column/" class="sidebar-link">
+          history_select_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/kv_scope_enum_constraint/" class="sidebar-link">
+          kv_scope_enum_constraint
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/kv_scope_enum_select_column/" class="sidebar-link">
+          kv_scope_enum_select_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/kv_scope_enum_update_column/" class="sidebar-link">
+          kv_scope_enum_update_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/kv_store_constraint/" class="sidebar-link">
+          kv_store_constraint
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/kv_store_select_column/" class="sidebar-link">
+          kv_store_select_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/kv_store_update_column/" class="sidebar-link">
+          kv_store_update_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/last_utterance_select_column/" class="sidebar-link">
+          last_utterance_select_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/objects_constraint/" class="sidebar-link">
+          objects_constraint
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/objects_select_column/" class="sidebar-link">
+          objects_select_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/objects_update_column/" class="sidebar-link">
+          objects_update_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/order_by/" class="sidebar-link">
+          order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/speaker_type_enum_constraint/" class="sidebar-link">
+          speaker_type_enum_constraint
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/speaker_type_enum_enum/" class="sidebar-link">
+          speaker_type_enum_enum
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/speaker_type_enum_select_column/" class="sidebar-link">
+          speaker_type_enum_select_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/speaker_type_enum_update_column/" class="sidebar-link">
+          speaker_type_enum_update_column
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/enum/utterances_select_column/" class="sidebar-link">
+          utterances_select_column
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/union">Unions</a></p>
+    <ul class="menu-root">
+      
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/input_object">Input Objects</a></p>
+    <ul class="menu-root">
+      
+      
+      <li>
+        <a href="/input_object/boolean_comparison_exp/" class="sidebar-link">
+          Boolean_comparison_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/contextobject/" class="sidebar-link">
+          ContextObject
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/inputpipe/" class="sidebar-link">
+          InputPipe
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/int_comparison_exp/" class="sidebar-link">
+          Int_comparison_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/sttconfig/" class="sidebar-link">
+          STTConfig
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/string_comparison_exp/" class="sidebar-link">
+          String_comparison_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/ttsconfig/" class="sidebar-link">
+          TTSConfig
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/_text_comparison_exp/" class="sidebar-link">
+          _text_comparison_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/app_status_comparison_exp/" class="sidebar-link">
+          app_status_comparison_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_aggregate_order_by/" class="sidebar-link">
+          apps_aggregate_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_append_input/" class="sidebar-link">
+          apps_append_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_arr_rel_insert_input/" class="sidebar-link">
+          apps_arr_rel_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_avg_order_by/" class="sidebar-link">
+          apps_avg_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_bool_exp/" class="sidebar-link">
+          apps_bool_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_delete_at_path_input/" class="sidebar-link">
+          apps_delete_at_path_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_delete_elem_input/" class="sidebar-link">
+          apps_delete_elem_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_delete_key_input/" class="sidebar-link">
+          apps_delete_key_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_inc_input/" class="sidebar-link">
+          apps_inc_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_insert_input/" class="sidebar-link">
+          apps_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_max_order_by/" class="sidebar-link">
+          apps_max_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_min_order_by/" class="sidebar-link">
+          apps_min_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_obj_rel_insert_input/" class="sidebar-link">
+          apps_obj_rel_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_on_conflict/" class="sidebar-link">
+          apps_on_conflict
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_order_by/" class="sidebar-link">
+          apps_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_prepend_input/" class="sidebar-link">
+          apps_prepend_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_set_input/" class="sidebar-link">
+          apps_set_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_stddev_order_by/" class="sidebar-link">
+          apps_stddev_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_stddev_pop_order_by/" class="sidebar-link">
+          apps_stddev_pop_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_stddev_samp_order_by/" class="sidebar-link">
+          apps_stddev_samp_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_sum_order_by/" class="sidebar-link">
+          apps_sum_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_var_pop_order_by/" class="sidebar-link">
+          apps_var_pop_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_var_samp_order_by/" class="sidebar-link">
+          apps_var_samp_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/apps_variance_order_by/" class="sidebar-link">
+          apps_variance_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/atomic_data_bool_exp/" class="sidebar-link">
+          atomic_data_bool_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/atomic_data_insert_input/" class="sidebar-link">
+          atomic_data_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/atomic_data_order_by/" class="sidebar-link">
+          atomic_data_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/atomic_data_set_input/" class="sidebar-link">
+          atomic_data_set_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conceptnet_data_bool_exp/" class="sidebar-link">
+          conceptnet_data_bool_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conceptnet_data_inc_input/" class="sidebar-link">
+          conceptnet_data_inc_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conceptnet_data_insert_input/" class="sidebar-link">
+          conceptnet_data_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conceptnet_data_on_conflict/" class="sidebar-link">
+          conceptnet_data_on_conflict
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conceptnet_data_order_by/" class="sidebar-link">
+          conceptnet_data_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conceptnet_data_set_input/" class="sidebar-link">
+          conceptnet_data_set_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conceptnet_search_relations_args/" class="sidebar-link">
+          conceptnet_search_relations_args
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_aggregate_order_by/" class="sidebar-link">
+          conversations_aggregate_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_append_input/" class="sidebar-link">
+          conversations_append_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_arr_rel_insert_input/" class="sidebar-link">
+          conversations_arr_rel_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_avg_order_by/" class="sidebar-link">
+          conversations_avg_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_bool_exp/" class="sidebar-link">
+          conversations_bool_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_delete_at_path_input/" class="sidebar-link">
+          conversations_delete_at_path_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_delete_elem_input/" class="sidebar-link">
+          conversations_delete_elem_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_delete_key_input/" class="sidebar-link">
+          conversations_delete_key_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_inc_input/" class="sidebar-link">
+          conversations_inc_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_insert_input/" class="sidebar-link">
+          conversations_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_max_order_by/" class="sidebar-link">
+          conversations_max_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_min_order_by/" class="sidebar-link">
+          conversations_min_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_obj_rel_insert_input/" class="sidebar-link">
+          conversations_obj_rel_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_on_conflict/" class="sidebar-link">
+          conversations_on_conflict
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_order_by/" class="sidebar-link">
+          conversations_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_prepend_input/" class="sidebar-link">
+          conversations_prepend_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_set_input/" class="sidebar-link">
+          conversations_set_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_stddev_order_by/" class="sidebar-link">
+          conversations_stddev_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_stddev_pop_order_by/" class="sidebar-link">
+          conversations_stddev_pop_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_stddev_samp_order_by/" class="sidebar-link">
+          conversations_stddev_samp_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_sum_order_by/" class="sidebar-link">
+          conversations_sum_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_var_pop_order_by/" class="sidebar-link">
+          conversations_var_pop_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_var_samp_order_by/" class="sidebar-link">
+          conversations_var_samp_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/conversations_variance_order_by/" class="sidebar-link">
+          conversations_variance_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/developers_append_input/" class="sidebar-link">
+          developers_append_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/developers_bool_exp/" class="sidebar-link">
+          developers_bool_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/developers_delete_at_path_input/" class="sidebar-link">
+          developers_delete_at_path_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/developers_delete_elem_input/" class="sidebar-link">
+          developers_delete_elem_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/developers_delete_key_input/" class="sidebar-link">
+          developers_delete_key_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/developers_inc_input/" class="sidebar-link">
+          developers_inc_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/developers_insert_input/" class="sidebar-link">
+          developers_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/developers_obj_rel_insert_input/" class="sidebar-link">
+          developers_obj_rel_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/developers_on_conflict/" class="sidebar-link">
+          developers_on_conflict
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/developers_order_by/" class="sidebar-link">
+          developers_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/developers_prepend_input/" class="sidebar-link">
+          developers_prepend_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/developers_set_input/" class="sidebar-link">
+          developers_set_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/end_users_append_input/" class="sidebar-link">
+          end_users_append_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/end_users_bool_exp/" class="sidebar-link">
+          end_users_bool_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/end_users_delete_at_path_input/" class="sidebar-link">
+          end_users_delete_at_path_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/end_users_delete_elem_input/" class="sidebar-link">
+          end_users_delete_elem_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/end_users_delete_key_input/" class="sidebar-link">
+          end_users_delete_key_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/end_users_inc_input/" class="sidebar-link">
+          end_users_inc_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/end_users_insert_input/" class="sidebar-link">
+          end_users_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/end_users_obj_rel_insert_input/" class="sidebar-link">
+          end_users_obj_rel_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/end_users_on_conflict/" class="sidebar-link">
+          end_users_on_conflict
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/end_users_order_by/" class="sidebar-link">
+          end_users_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/end_users_prepend_input/" class="sidebar-link">
+          end_users_prepend_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/end_users_set_input/" class="sidebar-link">
+          end_users_set_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/events_aggregate_order_by/" class="sidebar-link">
+          events_aggregate_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/events_append_input/" class="sidebar-link">
+          events_append_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/events_arr_rel_insert_input/" class="sidebar-link">
+          events_arr_rel_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/events_bool_exp/" class="sidebar-link">
+          events_bool_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/events_delete_at_path_input/" class="sidebar-link">
+          events_delete_at_path_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/events_delete_elem_input/" class="sidebar-link">
+          events_delete_elem_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/events_delete_key_input/" class="sidebar-link">
+          events_delete_key_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/events_insert_input/" class="sidebar-link">
+          events_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/events_max_order_by/" class="sidebar-link">
+          events_max_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/events_min_order_by/" class="sidebar-link">
+          events_min_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/events_order_by/" class="sidebar-link">
+          events_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/events_prepend_input/" class="sidebar-link">
+          events_prepend_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/events_set_input/" class="sidebar-link">
+          events_set_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/history_bool_exp/" class="sidebar-link">
+          history_bool_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/history_order_by/" class="sidebar-link">
+          history_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/jsonb_comparison_exp/" class="sidebar-link">
+          jsonb_comparison_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_scope_enum_bool_exp/" class="sidebar-link">
+          kv_scope_enum_bool_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_scope_enum_insert_input/" class="sidebar-link">
+          kv_scope_enum_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_scope_enum_on_conflict/" class="sidebar-link">
+          kv_scope_enum_on_conflict
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_scope_enum_order_by/" class="sidebar-link">
+          kv_scope_enum_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_scope_enum_pk_columns_input/" class="sidebar-link">
+          kv_scope_enum_pk_columns_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_scope_enum_set_input/" class="sidebar-link">
+          kv_scope_enum_set_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_aggregate_order_by/" class="sidebar-link">
+          kv_store_aggregate_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_append_input/" class="sidebar-link">
+          kv_store_append_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_arr_rel_insert_input/" class="sidebar-link">
+          kv_store_arr_rel_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_avg_order_by/" class="sidebar-link">
+          kv_store_avg_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_bool_exp/" class="sidebar-link">
+          kv_store_bool_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_delete_at_path_input/" class="sidebar-link">
+          kv_store_delete_at_path_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_delete_elem_input/" class="sidebar-link">
+          kv_store_delete_elem_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_delete_key_input/" class="sidebar-link">
+          kv_store_delete_key_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_inc_input/" class="sidebar-link">
+          kv_store_inc_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_insert_input/" class="sidebar-link">
+          kv_store_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_max_order_by/" class="sidebar-link">
+          kv_store_max_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_min_order_by/" class="sidebar-link">
+          kv_store_min_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_on_conflict/" class="sidebar-link">
+          kv_store_on_conflict
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_order_by/" class="sidebar-link">
+          kv_store_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_pk_columns_input/" class="sidebar-link">
+          kv_store_pk_columns_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_prepend_input/" class="sidebar-link">
+          kv_store_prepend_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_set_input/" class="sidebar-link">
+          kv_store_set_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_stddev_order_by/" class="sidebar-link">
+          kv_store_stddev_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_stddev_pop_order_by/" class="sidebar-link">
+          kv_store_stddev_pop_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_stddev_samp_order_by/" class="sidebar-link">
+          kv_store_stddev_samp_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_sum_order_by/" class="sidebar-link">
+          kv_store_sum_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_var_pop_order_by/" class="sidebar-link">
+          kv_store_var_pop_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_var_samp_order_by/" class="sidebar-link">
+          kv_store_var_samp_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/kv_store_variance_order_by/" class="sidebar-link">
+          kv_store_variance_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/last_utterance_bool_exp/" class="sidebar-link">
+          last_utterance_bool_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/last_utterance_order_by/" class="sidebar-link">
+          last_utterance_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/numeric_comparison_exp/" class="sidebar-link">
+          numeric_comparison_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/objects_append_input/" class="sidebar-link">
+          objects_append_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/objects_bool_exp/" class="sidebar-link">
+          objects_bool_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/objects_delete_at_path_input/" class="sidebar-link">
+          objects_delete_at_path_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/objects_delete_elem_input/" class="sidebar-link">
+          objects_delete_elem_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/objects_delete_key_input/" class="sidebar-link">
+          objects_delete_key_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/objects_inc_input/" class="sidebar-link">
+          objects_inc_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/objects_insert_input/" class="sidebar-link">
+          objects_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/objects_on_conflict/" class="sidebar-link">
+          objects_on_conflict
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/objects_order_by/" class="sidebar-link">
+          objects_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/objects_pk_columns_input/" class="sidebar-link">
+          objects_pk_columns_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/objects_prepend_input/" class="sidebar-link">
+          objects_prepend_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/objects_set_input/" class="sidebar-link">
+          objects_set_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/speaker_type_enum_bool_exp/" class="sidebar-link">
+          speaker_type_enum_bool_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/speaker_type_enum_enum_comparison_exp/" class="sidebar-link">
+          speaker_type_enum_enum_comparison_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/speaker_type_enum_insert_input/" class="sidebar-link">
+          speaker_type_enum_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/speaker_type_enum_obj_rel_insert_input/" class="sidebar-link">
+          speaker_type_enum_obj_rel_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/speaker_type_enum_on_conflict/" class="sidebar-link">
+          speaker_type_enum_on_conflict
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/speaker_type_enum_order_by/" class="sidebar-link">
+          speaker_type_enum_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/speaker_type_enum_pk_columns_input/" class="sidebar-link">
+          speaker_type_enum_pk_columns_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/speaker_type_enum_set_input/" class="sidebar-link">
+          speaker_type_enum_set_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/timestamptz_comparison_exp/" class="sidebar-link">
+          timestamptz_comparison_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/tstzrange_comparison_exp/" class="sidebar-link">
+          tstzrange_comparison_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/utterances_aggregate_order_by/" class="sidebar-link">
+          utterances_aggregate_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/utterances_arr_rel_insert_input/" class="sidebar-link">
+          utterances_arr_rel_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/utterances_avg_order_by/" class="sidebar-link">
+          utterances_avg_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/utterances_bool_exp/" class="sidebar-link">
+          utterances_bool_exp
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/utterances_inc_input/" class="sidebar-link">
+          utterances_inc_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/utterances_insert_input/" class="sidebar-link">
+          utterances_insert_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/utterances_max_order_by/" class="sidebar-link">
+          utterances_max_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/utterances_min_order_by/" class="sidebar-link">
+          utterances_min_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/utterances_order_by/" class="sidebar-link">
+          utterances_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/utterances_set_input/" class="sidebar-link">
+          utterances_set_input
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/utterances_stddev_order_by/" class="sidebar-link">
+          utterances_stddev_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/utterances_stddev_pop_order_by/" class="sidebar-link">
+          utterances_stddev_pop_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/utterances_stddev_samp_order_by/" class="sidebar-link">
+          utterances_stddev_samp_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/utterances_sum_order_by/" class="sidebar-link">
+          utterances_sum_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/utterances_var_pop_order_by/" class="sidebar-link">
+          utterances_var_pop_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/utterances_var_samp_order_by/" class="sidebar-link">
+          utterances_var_samp_order_by
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/input_object/utterances_variance_order_by/" class="sidebar-link">
+          utterances_variance_order_by
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/scalar">Scalars</a></p>
+    <ul class="menu-root">
+      
+      
+      <li>
+        <a href="/scalar/boolean/" class="sidebar-link">
+          Boolean
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/scalar/float/" class="sidebar-link">
+          Float
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/scalar/int/" class="sidebar-link">
+          Int
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/scalar/json/" class="sidebar-link">
+          JSON
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/scalar/string/" class="sidebar-link">
+          String
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/scalar/uuid/" class="sidebar-link">
+          UUID
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/scalar/_text/" class="sidebar-link">
+          _text
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/scalar/app_status/" class="sidebar-link">
+          app_status
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/scalar/jsonb/" class="sidebar-link">
+          jsonb
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/scalar/numeric/" class="sidebar-link">
+          numeric
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/scalar/timestamptz/" class="sidebar-link">
+          timestamptz
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/scalar/tstzrange/" class="sidebar-link">
+          tstzrange
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/directive">Directives</a></p>
+    <ul class="menu-root">
+      
+      
+      <li>
+        <a href="/directive/deprecated/" class="sidebar-link">
+          deprecated
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/directive/include/" class="sidebar-link">
+          include
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/directive/skip/" class="sidebar-link">
+          skip
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+</ul>
+
+      </div>
+      <div id="content">
+
+        <h1>
+<a id="kv_store_variance_fields" class="anchor" href="#kv_store_variance_fields" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>kv_store_variance_fields</h1>
+<p>aggregate variance on columns</p>
+<h2>
+<a id="fields" class="anchor" href="#fields" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fields</h2>
+<div class="field-entry ">
+  <span id="created_by" class="field-name anchored">created_by (<code><a href="/scalar/float">Float</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="object_id" class="field-name anchored">object_id (<code><a href="/scalar/float">Float</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="scope_object_id" class="field-name anchored">scope_object_id (<code><a href="/scalar/float">Float</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+
+      </div>
+
+      <!-- mobile only -->
+      <div id="mobile-header">
+        <a class="menu-button" onclick="document.body.classList.toggle('sidebar-open')"></a>
+        <a class="logo" href="/">
+
+        </a>
+      </div>
+      <div id="mobile-shade"></div>
+
+    </div>
+
+  </body>
+</html>
