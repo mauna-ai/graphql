@@ -1,5 +1,7 @@
-# Include lib
-!/lib/
+# Gems
+vendor/bundle/
+.bundle/
+.sass-cache/
 
 # Generated files
 /docs/
