@@ -1,16 +1,3 @@
-query paraphraseSentence($sentence: String!, $count: Int! = 3) {
-  callParaphraseSentence(input: $sentence, number_of_paraphrases: $count) {
-    paraphrases
-  }
-}
-
-query predictNextTurn($history: [String!]!, $alternatives: [String!]!) {
-  callNextDialogTurn(history: $history, alternatives: $alternatives) {
-    nextTurn: alternative
-    confidence
-  }
-}
-
 query matchIntent(
   $input: String!
   $intent: [String!]!

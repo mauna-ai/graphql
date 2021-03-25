@@ -9,17 +9,3 @@ query renderCSS($ssml: String!, $css: String) {
     result
   }
 }
-
-query speechToText($audio: String!) {
-  callSpeechToText(audioB64: $audio) {
-    transcript: alternatives {
-      text: transcript
-    }
-  }
-}
-
-query textToSpeech($text: String!) {
-  callTextToSpeech(text: $text) {
-    audio: audioB64
-  }
-}
