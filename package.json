@@ -1,6 +1,6 @@
 {
     "name": "@mauna/graphql-schema",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "description": "GraphQL schema and common queries for mauna",
     "graphqlEndpoint": "https://api.mauna.cloud/v1/graphql",
     "main": "index.js",
