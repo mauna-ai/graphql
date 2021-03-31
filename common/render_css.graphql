@@ -2,7 +2,7 @@ query renderCSS($ssml: String!, $css: String!) {
   callCompose(
     init: { styled_ssml: $ssml, voice_css: $css }
     pipeline: [
-      { op: "callApplyVoiceCSS", transform: "r => ({text: r.ssml})" }
+      { op: "callApplyVoiceCSS", transform: "r => ({text: r.$result.callApplyVoiceCSS.ssml})" }
       { op: "callTextToSpeech", transform: "" }
     ]
   ) {
