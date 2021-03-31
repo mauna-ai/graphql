@@ -1,7 +1,4 @@
-query matchIntent(
-  $input: String!
-  $intent: [String!]!
-) {
+query matchIntent($input: String!, $intent: [String!]!) {
   callMatchIntent(
     input: $input
     possible_intents: $intent
