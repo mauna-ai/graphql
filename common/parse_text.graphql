@@ -1,5 +1,5 @@
 query parseText($text: String!) {
-  callNlpDoc(text: $text) {
+  result: callNlpDoc(text: $text) {
     categories: cats {
       label
       score

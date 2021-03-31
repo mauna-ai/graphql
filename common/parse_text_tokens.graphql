@@ -1,5 +1,5 @@
 query parseTextTokens($text: String!) {
-  callNlpDoc(text: $text) {
+  result: callNlpDoc(text: $text) {
     tokens {
       dependency: dep
       entity_type: ent_type

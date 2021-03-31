@@ -1,5 +1,5 @@
 query toVec($text: String!) {
-  callNlpDoc(text: $text) {
+  result: callNlpDoc(text: $text) {
     has_vector
     vector
     vector_norm

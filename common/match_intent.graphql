@@ -1,5 +1,5 @@
 query matchIntent($input: String!, $intent: [String!]!) {
-  callMatchIntent(
+  result: callMatchIntent(
     input: $input
     possible_intents: $intent
     similarity_threshold: 0.7

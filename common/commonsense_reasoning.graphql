@@ -1,6 +1,9 @@
 query commonsenseReasoning($text: String!) {
-  callCommonsense(text: $text, categories: [xAttr, xEffect, xIntent, xWant]) {
-    type: name
-    result: texts
+  result: callCommonsense(
+    text: $text
+    categories: [xAttr, xEffect, xIntent, xWant]
+  ) {
+    category: name
+    predictions: texts
   }
 }

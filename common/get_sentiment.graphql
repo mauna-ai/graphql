@@ -1,5 +1,5 @@
 query getSentiment($text: String!) {
-  callNlpDoc(text: $text) {
+  result: callNlpDoc(text: $text) {
     sentiment
     sentences: sents {
       text

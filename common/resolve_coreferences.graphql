@@ -1,5 +1,5 @@
 query resolveCoreferences($text: String!) {
-  callNlpDoc(text: $text) {
+  result: callNlpDoc(text: $text) {
     coref: extension {
       detected: has_coref
       resolvedOutput: coref_resolved
