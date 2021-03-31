@@ -1,7 +1,7 @@
-query matchIntent($input: String!, $intent: [String!]!) {
+query matchIntent($input: String!, $intents: [String!]!) {
   result: callMatchIntent(
     input: $input
-    possible_intents: $intent
+    possible_intents: $intents
     similarity_threshold: 0.7
   ) {
     matches {
