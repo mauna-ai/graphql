@@ -1,0 +1,6 @@
+query commonsenseReasoning($text: String!) {
+  callCommonsense(text: $text, categories: [xAttr, xEffect, xIntent, xWant]) {
+    type: name
+    result: texts
+  }
+}

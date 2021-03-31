@@ -1,0 +1,5 @@
+query chitchat($input: String!, $history: [Turn!] = []) {
+  callChitchat(history: $history, input: $input) {
+    response
+  }
+}

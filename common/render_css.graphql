@@ -1,4 +1,4 @@
-query renderCSS($ssml: String!, $css: String) {
+query renderCSS($ssml: String!, $css: String!) {
   callCompose(
     init: { styled_ssml: $ssml, voice_css: $css }
     pipeline: [
