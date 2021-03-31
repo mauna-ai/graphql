@@ -57,6 +57,11 @@ type ACEResult {
   result: String
 }
 
+enum Agent {
+  BOT
+  USER
+}
+
 scalar app_status
 
 """
@@ -910,6 +915,26 @@ type Cat {
   start: Int
 }
 
+enum Categories {
+  all
+  oEffect
+  oReact
+  oWant
+  xAttr
+  xEffect
+  xIntent
+  xNeed
+  xReact
+  xWant
+}
+
+"""
+Chitchat results
+"""
+type ChitchatResponse {
+  response: String
+}
+
 """
 Output result
 """
@@ -1257,6 +1282,66 @@ type conversations {
   An object relationship
   """
   end_user: end_users!
+
+  """
+  An array relationship
+  """
+  end_user_conversations(
+    """
+    distinct select on columns
+    """
+    distinct_on: [end_user_conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [end_user_conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: end_user_conversations_bool_exp
+  ): [end_user_conversations!]!
+
+  """
+  An aggregate relationship
+  """
+  end_user_conversations_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [end_user_conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [end_user_conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: end_user_conversations_bool_exp
+  ): end_user_conversations_aggregate!
   end_user_id: Int!
 
   """
@@ -1479,6 +1564,7 @@ input conversations_bool_exp {
   created_at: timestamptz_comparison_exp
   destroyed_at: timestamptz_comparison_exp
   end_user: end_users_bool_exp
+  end_user_conversations: end_user_conversations_bool_exp
   end_user_id: Int_comparison_exp
   kv_store: kv_store_bool_exp
   metadata: jsonb_comparison_exp
@@ -1537,6 +1623,7 @@ input conversations_insert_input {
   created_at: timestamptz
   destroyed_at: timestamptz
   end_user: end_users_obj_rel_insert_input
+  end_user_conversations: end_user_conversations_arr_rel_insert_input
   end_user_id: Int
   kv_store: kv_store_arr_rel_insert_input
   metadata: jsonb
@@ -1638,6 +1725,7 @@ input conversations_order_by {
   created_at: order_by
   destroyed_at: order_by
   end_user: end_users_order_by
+  end_user_conversations_aggregate: end_user_conversations_aggregate_order_by
   end_user_id: order_by
   kv_store_aggregate: kv_store_aggregate_order_by
   metadata: order_by
@@ -2014,6 +2102,66 @@ type developers {
   """
   An array relationship
   """
+  invites(
+    """
+    distinct select on columns
+    """
+    distinct_on: [invites_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [invites_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: invites_bool_exp
+  ): [invites!]!
+
+  """
+  An aggregate relationship
+  """
+  invites_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [invites_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [invites_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: invites_bool_exp
+  ): invites_aggregate!
+
+  """
+  An array relationship
+  """
   kv_stores(
     """
     distinct select on columns
@@ -2135,6 +2283,7 @@ input developers_bool_exp {
   email: String_comparison_exp
   events: events_bool_exp
   github_handle: String_comparison_exp
+  invites: invites_bool_exp
   kv_stores: kv_store_bool_exp
   metadata: jsonb_comparison_exp
   name: String_comparison_exp
@@ -2213,6 +2362,7 @@ input developers_insert_input {
   email: String
   events: events_arr_rel_insert_input
   github_handle: String
+  invites: invites_arr_rel_insert_input
   kv_stores: kv_store_arr_rel_insert_input
   metadata: jsonb
   name: String
@@ -2294,6 +2444,7 @@ input developers_order_by {
   email: order_by
   events_aggregate: events_aggregate_order_by
   github_handle: order_by
+  invites_aggregate: invites_aggregate_order_by
   kv_stores_aggregate: kv_store_aggregate_order_by
   metadata: order_by
   name: order_by
@@ -2525,6 +2676,366 @@ enum Encoding {
 }
 
 """
+columns and relationships of "end_user_conversations"
+"""
+type end_user_conversations {
+  """
+  An object relationship
+  """
+  conversation: conversations!
+  conversation_id: Int!
+
+  """
+  An object relationship
+  """
+  end_user: end_users!
+  end_user_id: Int!
+}
+
+"""
+aggregated selection of "end_user_conversations"
+"""
+type end_user_conversations_aggregate {
+  aggregate: end_user_conversations_aggregate_fields
+  nodes: [end_user_conversations!]!
+}
+
+"""
+aggregate fields of "end_user_conversations"
+"""
+type end_user_conversations_aggregate_fields {
+  avg: end_user_conversations_avg_fields
+  count(
+    columns: [end_user_conversations_select_column!]
+    distinct: Boolean
+  ): Int!
+  max: end_user_conversations_max_fields
+  min: end_user_conversations_min_fields
+  stddev: end_user_conversations_stddev_fields
+  stddev_pop: end_user_conversations_stddev_pop_fields
+  stddev_samp: end_user_conversations_stddev_samp_fields
+  sum: end_user_conversations_sum_fields
+  var_pop: end_user_conversations_var_pop_fields
+  var_samp: end_user_conversations_var_samp_fields
+  variance: end_user_conversations_variance_fields
+}
+
+"""
+order by aggregate values of table "end_user_conversations"
+"""
+input end_user_conversations_aggregate_order_by {
+  avg: end_user_conversations_avg_order_by
+  count: order_by
+  max: end_user_conversations_max_order_by
+  min: end_user_conversations_min_order_by
+  stddev: end_user_conversations_stddev_order_by
+  stddev_pop: end_user_conversations_stddev_pop_order_by
+  stddev_samp: end_user_conversations_stddev_samp_order_by
+  sum: end_user_conversations_sum_order_by
+  var_pop: end_user_conversations_var_pop_order_by
+  var_samp: end_user_conversations_var_samp_order_by
+  variance: end_user_conversations_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "end_user_conversations"
+"""
+input end_user_conversations_arr_rel_insert_input {
+  data: [end_user_conversations_insert_input!]!
+
+  """
+  on conflict condition
+  """
+  on_conflict: end_user_conversations_on_conflict
+}
+
+"""
+aggregate avg on columns
+"""
+type end_user_conversations_avg_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by avg() on columns of table "end_user_conversations"
+"""
+input end_user_conversations_avg_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "end_user_conversations". All fields are combined with a logical 'AND'.
+"""
+input end_user_conversations_bool_exp {
+  _and: [end_user_conversations_bool_exp!]
+  _not: end_user_conversations_bool_exp
+  _or: [end_user_conversations_bool_exp!]
+  conversation: conversations_bool_exp
+  conversation_id: Int_comparison_exp
+  end_user: end_users_bool_exp
+  end_user_id: Int_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "end_user_conversations"
+"""
+enum end_user_conversations_constraint {
+  """
+  unique or primary key constraint
+  """
+  end_user_conversations_end_user_id_key
+
+  """
+  unique or primary key constraint
+  """
+  end_user_conversations_pkey
+}
+
+"""
+input type for incrementing numeric columns in table "end_user_conversations"
+"""
+input end_user_conversations_inc_input {
+  conversation_id: Int
+  end_user_id: Int
+}
+
+"""
+input type for inserting data into table "end_user_conversations"
+"""
+input end_user_conversations_insert_input {
+  conversation: conversations_obj_rel_insert_input
+  conversation_id: Int
+  end_user: end_users_obj_rel_insert_input
+  end_user_id: Int
+}
+
+"""
+aggregate max on columns
+"""
+type end_user_conversations_max_fields {
+  conversation_id: Int
+  end_user_id: Int
+}
+
+"""
+order by max() on columns of table "end_user_conversations"
+"""
+input end_user_conversations_max_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+aggregate min on columns
+"""
+type end_user_conversations_min_fields {
+  conversation_id: Int
+  end_user_id: Int
+}
+
+"""
+order by min() on columns of table "end_user_conversations"
+"""
+input end_user_conversations_min_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+response of any mutation on the table "end_user_conversations"
+"""
+type end_user_conversations_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [end_user_conversations!]!
+}
+
+"""
+on conflict condition type for table "end_user_conversations"
+"""
+input end_user_conversations_on_conflict {
+  constraint: end_user_conversations_constraint!
+  update_columns: [end_user_conversations_update_column!]!
+  where: end_user_conversations_bool_exp
+}
+
+"""
+Ordering options when selecting data from "end_user_conversations".
+"""
+input end_user_conversations_order_by {
+  conversation: conversations_order_by
+  conversation_id: order_by
+  end_user: end_users_order_by
+  end_user_id: order_by
+}
+
+"""
+primary key columns input for table: end_user_conversations
+"""
+input end_user_conversations_pk_columns_input {
+  conversation_id: Int!
+  end_user_id: Int!
+}
+
+"""
+select columns of table "end_user_conversations"
+"""
+enum end_user_conversations_select_column {
+  """
+  column name
+  """
+  conversation_id
+
+  """
+  column name
+  """
+  end_user_id
+}
+
+"""
+input type for updating data in table "end_user_conversations"
+"""
+input end_user_conversations_set_input {
+  conversation_id: Int
+  end_user_id: Int
+}
+
+"""
+aggregate stddev on columns
+"""
+type end_user_conversations_stddev_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by stddev() on columns of table "end_user_conversations"
+"""
+input end_user_conversations_stddev_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type end_user_conversations_stddev_pop_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "end_user_conversations"
+"""
+input end_user_conversations_stddev_pop_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type end_user_conversations_stddev_samp_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "end_user_conversations"
+"""
+input end_user_conversations_stddev_samp_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+aggregate sum on columns
+"""
+type end_user_conversations_sum_fields {
+  conversation_id: Int
+  end_user_id: Int
+}
+
+"""
+order by sum() on columns of table "end_user_conversations"
+"""
+input end_user_conversations_sum_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+update columns of table "end_user_conversations"
+"""
+enum end_user_conversations_update_column {
+  """
+  column name
+  """
+  conversation_id
+
+  """
+  column name
+  """
+  end_user_id
+}
+
+"""
+aggregate var_pop on columns
+"""
+type end_user_conversations_var_pop_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by var_pop() on columns of table "end_user_conversations"
+"""
+input end_user_conversations_var_pop_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+aggregate var_samp on columns
+"""
+type end_user_conversations_var_samp_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by var_samp() on columns of table "end_user_conversations"
+"""
+input end_user_conversations_var_samp_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+aggregate variance on columns
+"""
+type end_user_conversations_variance_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by variance() on columns of table "end_user_conversations"
+"""
+input end_user_conversations_variance_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
 columns and relationships of "end_users"
 """
 type end_users {
@@ -2588,6 +3099,66 @@ type end_users {
     where: conversations_bool_exp
   ): conversations_aggregate!
   created_at: timestamptz!
+
+  """
+  An array relationship
+  """
+  end_user_conversations(
+    """
+    distinct select on columns
+    """
+    distinct_on: [end_user_conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [end_user_conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: end_user_conversations_bool_exp
+  ): [end_user_conversations!]!
+
+  """
+  An aggregate relationship
+  """
+  end_user_conversations_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [end_user_conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [end_user_conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: end_user_conversations_bool_exp
+  ): end_user_conversations_aggregate!
 
   """
   An array relationship
@@ -2767,6 +3338,7 @@ input end_users_bool_exp {
   _or: [end_users_bool_exp!]
   conversations: conversations_bool_exp
   created_at: timestamptz_comparison_exp
+  end_user_conversations: end_user_conversations_bool_exp
   kv_store: kv_store_bool_exp
   metadata: jsonb_comparison_exp
   object_id: Int_comparison_exp
@@ -2825,6 +3397,7 @@ input type for inserting data into table "end_users"
 input end_users_insert_input {
   conversations: conversations_arr_rel_insert_input
   created_at: timestamptz
+  end_user_conversations: end_user_conversations_arr_rel_insert_input
   kv_store: kv_store_arr_rel_insert_input
   metadata: jsonb
   object_id: Int
@@ -2895,6 +3468,7 @@ Ordering options when selecting data from "end_users".
 input end_users_order_by {
   conversations_aggregate: conversations_aggregate_order_by
   created_at: order_by
+  end_user_conversations_aggregate: end_user_conversations_aggregate_order_by
   kv_store_aggregate: kv_store_aggregate_order_by
   metadata: order_by
   object_id: order_by
@@ -3456,6 +4030,493 @@ input Int_comparison_exp {
   _lte: Int
   _neq: Int
   _nin: [Int!]
+}
+
+"""
+columns and relationships of "invites"
+"""
+type invites {
+  accepted: Boolean!
+  created_at: timestamptz!
+
+  """
+  An object relationship
+  """
+  developer: developers!
+  invited_email: String!
+  inviter_id: Int!
+  metadata(
+    """
+    JSON select path
+    """
+    path: String
+  ): jsonb!
+  object_id: Int!
+  resend_count: Int!
+}
+
+"""
+aggregated selection of "invites"
+"""
+type invites_aggregate {
+  aggregate: invites_aggregate_fields
+  nodes: [invites!]!
+}
+
+"""
+aggregate fields of "invites"
+"""
+type invites_aggregate_fields {
+  avg: invites_avg_fields
+  count(columns: [invites_select_column!], distinct: Boolean): Int!
+  max: invites_max_fields
+  min: invites_min_fields
+  stddev: invites_stddev_fields
+  stddev_pop: invites_stddev_pop_fields
+  stddev_samp: invites_stddev_samp_fields
+  sum: invites_sum_fields
+  var_pop: invites_var_pop_fields
+  var_samp: invites_var_samp_fields
+  variance: invites_variance_fields
+}
+
+"""
+order by aggregate values of table "invites"
+"""
+input invites_aggregate_order_by {
+  avg: invites_avg_order_by
+  count: order_by
+  max: invites_max_order_by
+  min: invites_min_order_by
+  stddev: invites_stddev_order_by
+  stddev_pop: invites_stddev_pop_order_by
+  stddev_samp: invites_stddev_samp_order_by
+  sum: invites_sum_order_by
+  var_pop: invites_var_pop_order_by
+  var_samp: invites_var_samp_order_by
+  variance: invites_variance_order_by
+}
+
+"""
+append existing jsonb value of filtered columns with new jsonb value
+"""
+input invites_append_input {
+  metadata: jsonb
+}
+
+"""
+input type for inserting array relation for remote table "invites"
+"""
+input invites_arr_rel_insert_input {
+  data: [invites_insert_input!]!
+
+  """
+  on conflict condition
+  """
+  on_conflict: invites_on_conflict
+}
+
+"""
+aggregate avg on columns
+"""
+type invites_avg_fields {
+  inviter_id: Float
+  object_id: Float
+  resend_count: Float
+}
+
+"""
+order by avg() on columns of table "invites"
+"""
+input invites_avg_order_by {
+  inviter_id: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "invites". All fields are combined with a logical 'AND'.
+"""
+input invites_bool_exp {
+  _and: [invites_bool_exp!]
+  _not: invites_bool_exp
+  _or: [invites_bool_exp!]
+  accepted: Boolean_comparison_exp
+  created_at: timestamptz_comparison_exp
+  developer: developers_bool_exp
+  invited_email: String_comparison_exp
+  inviter_id: Int_comparison_exp
+  metadata: jsonb_comparison_exp
+  object_id: Int_comparison_exp
+  resend_count: Int_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "invites"
+"""
+enum invites_constraint {
+  """
+  unique or primary key constraint
+  """
+  invites_inviter_id_invited_email_key
+
+  """
+  unique or primary key constraint
+  """
+  invites_object_id_key
+}
+
+"""
+delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+"""
+input invites_delete_at_path_input {
+  metadata: [String!]
+}
+
+"""
+delete the array element with specified index (negative integers count from the
+end). throws an error if top level container is not an array
+"""
+input invites_delete_elem_input {
+  metadata: Int
+}
+
+"""
+delete key/value pair or string element. key/value pairs are matched based on their key value
+"""
+input invites_delete_key_input {
+  metadata: String
+}
+
+"""
+input type for incrementing numeric columns in table "invites"
+"""
+input invites_inc_input {
+  inviter_id: Int
+  object_id: Int
+  resend_count: Int
+}
+
+"""
+input type for inserting data into table "invites"
+"""
+input invites_insert_input {
+  accepted: Boolean
+  created_at: timestamptz
+  developer: developers_obj_rel_insert_input
+  invited_email: String
+  inviter_id: Int
+  metadata: jsonb
+  object_id: Int
+  resend_count: Int
+}
+
+"""
+aggregate max on columns
+"""
+type invites_max_fields {
+  created_at: timestamptz
+  invited_email: String
+  inviter_id: Int
+  object_id: Int
+  resend_count: Int
+}
+
+"""
+order by max() on columns of table "invites"
+"""
+input invites_max_order_by {
+  created_at: order_by
+  invited_email: order_by
+  inviter_id: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+aggregate min on columns
+"""
+type invites_min_fields {
+  created_at: timestamptz
+  invited_email: String
+  inviter_id: Int
+  object_id: Int
+  resend_count: Int
+}
+
+"""
+order by min() on columns of table "invites"
+"""
+input invites_min_order_by {
+  created_at: order_by
+  invited_email: order_by
+  inviter_id: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+response of any mutation on the table "invites"
+"""
+type invites_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [invites!]!
+}
+
+"""
+on conflict condition type for table "invites"
+"""
+input invites_on_conflict {
+  constraint: invites_constraint!
+  update_columns: [invites_update_column!]!
+  where: invites_bool_exp
+}
+
+"""
+Ordering options when selecting data from "invites".
+"""
+input invites_order_by {
+  accepted: order_by
+  created_at: order_by
+  developer: developers_order_by
+  invited_email: order_by
+  inviter_id: order_by
+  metadata: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+prepend existing jsonb value of filtered columns with new jsonb value
+"""
+input invites_prepend_input {
+  metadata: jsonb
+}
+
+"""
+select columns of table "invites"
+"""
+enum invites_select_column {
+  """
+  column name
+  """
+  accepted
+
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  invited_email
+
+  """
+  column name
+  """
+  inviter_id
+
+  """
+  column name
+  """
+  metadata
+
+  """
+  column name
+  """
+  object_id
+
+  """
+  column name
+  """
+  resend_count
+}
+
+"""
+input type for updating data in table "invites"
+"""
+input invites_set_input {
+  accepted: Boolean
+  created_at: timestamptz
+  invited_email: String
+  inviter_id: Int
+  metadata: jsonb
+  object_id: Int
+  resend_count: Int
+}
+
+"""
+aggregate stddev on columns
+"""
+type invites_stddev_fields {
+  inviter_id: Float
+  object_id: Float
+  resend_count: Float
+}
+
+"""
+order by stddev() on columns of table "invites"
+"""
+input invites_stddev_order_by {
+  inviter_id: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type invites_stddev_pop_fields {
+  inviter_id: Float
+  object_id: Float
+  resend_count: Float
+}
+
+"""
+order by stddev_pop() on columns of table "invites"
+"""
+input invites_stddev_pop_order_by {
+  inviter_id: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type invites_stddev_samp_fields {
+  inviter_id: Float
+  object_id: Float
+  resend_count: Float
+}
+
+"""
+order by stddev_samp() on columns of table "invites"
+"""
+input invites_stddev_samp_order_by {
+  inviter_id: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+aggregate sum on columns
+"""
+type invites_sum_fields {
+  inviter_id: Int
+  object_id: Int
+  resend_count: Int
+}
+
+"""
+order by sum() on columns of table "invites"
+"""
+input invites_sum_order_by {
+  inviter_id: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+update columns of table "invites"
+"""
+enum invites_update_column {
+  """
+  column name
+  """
+  accepted
+
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  invited_email
+
+  """
+  column name
+  """
+  inviter_id
+
+  """
+  column name
+  """
+  metadata
+
+  """
+  column name
+  """
+  object_id
+
+  """
+  column name
+  """
+  resend_count
+}
+
+"""
+aggregate var_pop on columns
+"""
+type invites_var_pop_fields {
+  inviter_id: Float
+  object_id: Float
+  resend_count: Float
+}
+
+"""
+order by var_pop() on columns of table "invites"
+"""
+input invites_var_pop_order_by {
+  inviter_id: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+aggregate var_samp on columns
+"""
+type invites_var_samp_fields {
+  inviter_id: Float
+  object_id: Float
+  resend_count: Float
+}
+
+"""
+order by var_samp() on columns of table "invites"
+"""
+input invites_var_samp_order_by {
+  inviter_id: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+aggregate variance on columns
+"""
+type invites_variance_fields {
+  inviter_id: Float
+  object_id: Float
+  resend_count: Float
+}
+
+"""
+order by variance() on columns of table "invites"
+"""
+input invites_variance_order_by {
+  inviter_id: order_by
+  object_id: order_by
+  resend_count: order_by
 }
 
 """
@@ -4428,6 +5489,24 @@ type mutation_root {
   ): developers_mutation_response
 
   """
+  delete data from the table: "end_user_conversations"
+  """
+  delete_end_user_conversations(
+    """
+    filter the rows which have to be deleted
+    """
+    where: end_user_conversations_bool_exp!
+  ): end_user_conversations_mutation_response
+
+  """
+  delete single row from the table: "end_user_conversations"
+  """
+  delete_end_user_conversations_by_pk(
+    conversation_id: Int!
+    end_user_id: Int!
+  ): end_user_conversations
+
+  """
   delete data from the table: "end_users"
   """
   delete_end_users(
@@ -4446,6 +5525,16 @@ type mutation_root {
     """
     where: events_bool_exp!
   ): events_mutation_response
+
+  """
+  delete data from the table: "invites"
+  """
+  delete_invites(
+    """
+    filter the rows which have to be deleted
+    """
+    where: invites_bool_exp!
+  ): invites_mutation_response
 
   """
   delete data from the table: "kv_scope_enum"
@@ -4662,6 +5751,36 @@ type mutation_root {
   ): developers
 
   """
+  insert data into the table: "end_user_conversations"
+  """
+  insert_end_user_conversations(
+    """
+    the rows to be inserted
+    """
+    objects: [end_user_conversations_insert_input!]!
+
+    """
+    on conflict condition
+    """
+    on_conflict: end_user_conversations_on_conflict
+  ): end_user_conversations_mutation_response
+
+  """
+  insert a single row into the table: "end_user_conversations"
+  """
+  insert_end_user_conversations_one(
+    """
+    the row to be inserted
+    """
+    object: end_user_conversations_insert_input!
+
+    """
+    on conflict condition
+    """
+    on_conflict: end_user_conversations_on_conflict
+  ): end_user_conversations
+
+  """
   insert data into the table: "end_users"
   """
   insert_end_users(
@@ -4710,6 +5829,36 @@ type mutation_root {
     """
     object: events_insert_input!
   ): events
+
+  """
+  insert data into the table: "invites"
+  """
+  insert_invites(
+    """
+    the rows to be inserted
+    """
+    objects: [invites_insert_input!]!
+
+    """
+    on conflict condition
+    """
+    on_conflict: invites_on_conflict
+  ): invites_mutation_response
+
+  """
+  insert a single row into the table: "invites"
+  """
+  insert_invites_one(
+    """
+    the row to be inserted
+    """
+    object: invites_insert_input!
+
+    """
+    on conflict condition
+    """
+    on_conflict: invites_on_conflict
+  ): invites
 
   """
   insert data into the table: "kv_scope_enum"
@@ -5025,6 +6174,42 @@ type mutation_root {
   ): developers_mutation_response
 
   """
+  update data of the table: "end_user_conversations"
+  """
+  update_end_user_conversations(
+    """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: end_user_conversations_inc_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: end_user_conversations_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: end_user_conversations_bool_exp!
+  ): end_user_conversations_mutation_response
+
+  """
+  update single row of the table: "end_user_conversations"
+  """
+  update_end_user_conversations_by_pk(
+    """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: end_user_conversations_inc_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: end_user_conversations_set_input
+    pk_columns: end_user_conversations_pk_columns_input!
+  ): end_user_conversations
+
+  """
   update data of the table: "end_users"
   """
   update_end_users(
@@ -5110,6 +6295,52 @@ type mutation_root {
     """
     where: events_bool_exp!
   ): events_mutation_response
+
+  """
+  update data of the table: "invites"
+  """
+  update_invites(
+    """
+    append existing jsonb value of filtered columns with new jsonb value
+    """
+    _append: invites_append_input
+
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: invites_delete_at_path_input
+
+    """
+    delete the array element with specified index (negative integers count from
+    the end). throws an error if top level container is not an array
+    """
+    _delete_elem: invites_delete_elem_input
+
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: invites_delete_key_input
+
+    """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: invites_inc_input
+
+    """
+    prepend existing jsonb value of filtered columns with new jsonb value
+    """
+    _prepend: invites_prepend_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: invites_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: invites_bool_exp!
+  ): invites_mutation_response
 
   """
   update data of the table: "kv_scope_enum"
@@ -5918,6 +7149,26 @@ type query_root {
   callApplyVoiceCSS(styled_ssml: String, voice_css: String): SSMLResult
 
   """
+  Perform chit chat
+  """
+  callChitchat(history: [Turn!], input: String): ChitchatResponse
+
+  """
+  Predict categories
+  """
+  callCommonsense(
+    """
+    Categories to pull out of text
+    """
+    categories: [Categories] = null
+
+    """
+    Text string
+    """
+    text: String!
+  ): [RelationResult]
+
+  """
   Execute composition pipeline
   """
   callCompose(init: JSON, pipeline: [InputPipe]!): ComposeResult
@@ -5985,6 +7236,21 @@ type query_root {
     """
     turns: [ContextObject]
   ): [ContextResult]
+
+  """
+  Predict relations
+  """
+  callPredictRelation(
+    """
+    Relations to pull out of text
+    """
+    relations: [Relations] = null
+
+    """
+    Text string
+    """
+    text: String!
+  ): [RelationResult]
   callShowDocs(service: ServiceName): ServiceInfo
 
   """
@@ -6248,6 +7514,74 @@ type query_root {
   ): developers_aggregate!
 
   """
+  An array relationship
+  """
+  end_user_conversations(
+    """
+    distinct select on columns
+    """
+    distinct_on: [end_user_conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [end_user_conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: end_user_conversations_bool_exp
+  ): [end_user_conversations!]!
+
+  """
+  An aggregate relationship
+  """
+  end_user_conversations_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [end_user_conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [end_user_conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: end_user_conversations_bool_exp
+  ): end_user_conversations_aggregate!
+
+  """
+  fetch data from the table: "end_user_conversations" using primary key columns
+  """
+  end_user_conversations_by_pk(
+    conversation_id: Int!
+    end_user_id: Int!
+  ): end_user_conversations
+
+  """
   fetch data from the table: "end_users"
   """
   end_users(
@@ -6426,6 +7760,66 @@ type query_root {
     """
     where: history_bool_exp
   ): history_aggregate!
+
+  """
+  An array relationship
+  """
+  invites(
+    """
+    distinct select on columns
+    """
+    distinct_on: [invites_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [invites_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: invites_bool_exp
+  ): [invites!]!
+
+  """
+  An aggregate relationship
+  """
+  invites_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [invites_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [invites_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: invites_bool_exp
+  ): invites_aggregate!
 
   """
   fetch data from the table: "kv_scope_enum"
@@ -6806,6 +8200,59 @@ type query_root {
     """
     where: utterances_bool_exp
   ): utterances_aggregate!
+}
+
+type RelationResult {
+  """
+  Relation name
+  """
+  name: String
+
+  """
+  Related texts
+  """
+  texts: [String]
+}
+
+"""
+Relation type
+"""
+enum Relations {
+  AtLocation
+  CapableOf
+  Causes
+  CausesDesire
+  CreatedBy
+  DefinedAs
+  DesireOf
+  Desires
+  HasA
+  HasFirstSubevent
+  HasLastSubevent
+  HasPainCharacter
+  HasPainIntensity
+  HasPrerequisite
+  HasProperty
+  HasSubevent
+  InheritsFrom
+  InstanceOf
+  IsA
+  LocatedNear
+  LocationOfAction
+  MadeOf
+  MotivatedByGoal
+  NotCapableOf
+  NotDesires
+  NotHasA
+  NotHasProperty
+  NotIsA
+  NotMadeOf
+  PartOf
+  ReceivesAction
+  RelatedTo
+  SymbolOf
+  UsedFor
+  all
 }
 
 type Scores {
@@ -7641,6 +9088,74 @@ type subscription_root {
   ): developers_aggregate!
 
   """
+  An array relationship
+  """
+  end_user_conversations(
+    """
+    distinct select on columns
+    """
+    distinct_on: [end_user_conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [end_user_conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: end_user_conversations_bool_exp
+  ): [end_user_conversations!]!
+
+  """
+  An aggregate relationship
+  """
+  end_user_conversations_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [end_user_conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [end_user_conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: end_user_conversations_bool_exp
+  ): end_user_conversations_aggregate!
+
+  """
+  fetch data from the table: "end_user_conversations" using primary key columns
+  """
+  end_user_conversations_by_pk(
+    conversation_id: Int!
+    end_user_id: Int!
+  ): end_user_conversations
+
+  """
   fetch data from the table: "end_users"
   """
   end_users(
@@ -7819,6 +9334,66 @@ type subscription_root {
     """
     where: history_bool_exp
   ): history_aggregate!
+
+  """
+  An array relationship
+  """
+  invites(
+    """
+    distinct select on columns
+    """
+    distinct_on: [invites_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [invites_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: invites_bool_exp
+  ): [invites!]!
+
+  """
+  An aggregate relationship
+  """
+  invites_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [invites_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [invites_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: invites_bool_exp
+  ): invites_aggregate!
 
   """
   fetch data from the table: "kv_scope_enum"
@@ -8396,6 +9971,14 @@ type TTSResult {
   Resulting audio as a base64 string
   """
   audioB64: String
+}
+
+"""
+An object representing a single turn by an agent
+"""
+input Turn {
+  agent: Agent
+  said: String
 }
 
 """
