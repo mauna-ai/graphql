@@ -1,5 +1,5 @@
 query extractNumericData($text: String!) {
-  callNlpDoc(text: $text) {
+  result: callNlpDoc(text: $text) {
     tokens {
       numeric_analysis: extension {
         data: nfh_head
