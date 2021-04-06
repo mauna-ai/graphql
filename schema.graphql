@@ -7970,7 +7970,7 @@ type query_root {
   """
   Apply voice CSS to the SSML input
   """
-  callApplyVoiceCSS(styled_ssml: String, voice_css: String): SSMLResult
+  callApplyVoiceCSS(ssml: String, css: String): SSMLResult
 
   """
   Perform chit chat
@@ -9477,7 +9477,7 @@ type SSMLResult {
   """
   Rendered SSML
   """
-  ssml: String
+  result: String
 }
 
 """
