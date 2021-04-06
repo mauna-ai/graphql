@@ -8080,7 +8080,13 @@ type query_root {
   """
   Convert speech to text
   """
-  callSpeechToText(audioB64: String!, config: STTConfig): [STTResult]
+  callSpeechToText(
+    """
+    audioB64 string input
+    """
+    audioB64: String!
+    config: STTConfig
+  ): [STTResult]
 
   """
   Convert text to speech
@@ -9557,17 +9563,7 @@ input STTConfig {
   """
   Language code
   """
-  languageCode: String
-
-  """
-  Maximum number of the output alternatives
-  """
-  maxAlternatives: Int
-
-  """
-  Profanity filter flag
-  """
-  profanityFilter: Boolean
+  language: String
 
   """
   Audio Sample rate
@@ -10780,7 +10776,7 @@ type TextAlternative {
   """
   Output text
   """
-  transcript: String
+  result: String
 }
 
 scalar timestamptz
