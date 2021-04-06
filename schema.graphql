@@ -8050,7 +8050,7 @@ type query_root {
   """
   Parse ACE sentence
   """
-  callParseACE(format: ACEOutputType, guess: Boolean, text: String!): ACEResult
+  callParseACE(type: ACEOutputType, input: String!): ACEResult
 
   """
   Parse frame semantics for a list of dialog turns
