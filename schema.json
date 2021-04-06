@@ -533,7 +533,7 @@
         "description": "Chitchat results",
         "fields": [
           {
-            "name": "response",
+            "name": "result",
             "description": null,
             "args": [],
             "type": {
@@ -802,7 +802,7 @@
             "deprecationReason": null
           },
           {
-            "name": "confidence",
+            "name": "score",
             "description": "Confidence of the utterance",
             "args": [],
             "type": {
@@ -1472,6 +1472,30 @@
         "description": null,
         "fields": [
           {
+            "name": "candidate",
+            "description": "Similarity sentences pair",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "input",
+            "description": "Similarity sentences pair",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "score",
             "description": "Similarity score",
             "args": [],
@@ -1479,22 +1503,6 @@
               "kind": "SCALAR",
               "name": "Float",
               "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "sentencePair",
-            "description": "Similarity sentences pair",
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -1508,11 +1516,11 @@
       {
         "kind": "OBJECT",
         "name": "Paraphrase",
-        "description": null,
+        "description": "Paraphrasing results",
         "fields": [
           {
-            "name": "paraphrases",
-            "description": null,
+            "name": "result",
+            "description": "A list of paraphrases",
             "args": [],
             "type": {
               "kind": "LIST",
@@ -1845,6 +1853,33 @@
       },
       {
         "kind": "OBJECT",
+        "name": "Result",
+        "description": "Turn prediction result",
+        "fields": [
+          {
+            "name": "result",
+            "description": "Ranked list of alternatives",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DialogAlternative",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "SSMLResult",
         "description": "Output result",
         "fields": [
@@ -2024,184 +2059,6 @@
         "inputFields": null,
         "interfaces": [],
         "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ServiceInfo",
-        "description": null,
-        "fields": [
-          {
-            "name": "enums",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "inputs",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "interfaces",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "objects",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "queries",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "scalars",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "schema",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "ServiceName",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "ace_parser",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "compose_services",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "context_frame_parser",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "docs",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "intent_matcher",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "nlu_service",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "paraphrase_sentences",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "sentence_similarity",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "speech_to_text",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "text_to_speech",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "turn_prediction",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "voice_css_render",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
         "possibleTypes": null
       },
       {
@@ -8003,6 +7860,3044 @@
               "kind": "SCALAR",
               "name": "_text",
               "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "audit_logged_actions",
+        "description": "columns and relationships of \"audit.logged_actions\"",
+        "fields": [
+          {
+            "name": "action",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_clk",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "timestamptz",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_stm",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "timestamptz",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_tx",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "timestamptz",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "application_name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "changed_fields",
+            "description": null,
+            "args": [
+              {
+                "name": "path",
+                "description": "JSON select path",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_addr",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "inet",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_port",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_query",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "bigint",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hasura_user",
+            "description": null,
+            "args": [
+              {
+                "name": "path",
+                "description": "JSON select path",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "relid",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "oid",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "row_data",
+            "description": null,
+            "args": [
+              {
+                "name": "path",
+                "description": "JSON select path",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "schema_name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "session_user_name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "statement_only",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "table_name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transaction_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "bigint",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "audit_logged_actions_aggregate",
+        "description": "aggregated selection of \"audit.logged_actions\"",
+        "fields": [
+          {
+            "name": "aggregate",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "audit_logged_actions_aggregate_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "nodes",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "audit_logged_actions",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "audit_logged_actions_aggregate_fields",
+        "description": "aggregate fields of \"audit.logged_actions\"",
+        "fields": [
+          {
+            "name": "avg",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "audit_logged_actions_avg_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "count",
+            "description": null,
+            "args": [
+              {
+                "name": "columns",
+                "description": null,
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "audit_logged_actions_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "distinct",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "max",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "audit_logged_actions_max_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "min",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "audit_logged_actions_min_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "stddev",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "audit_logged_actions_stddev_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "stddev_pop",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "audit_logged_actions_stddev_pop_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "stddev_samp",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "audit_logged_actions_stddev_samp_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sum",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "audit_logged_actions_sum_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "var_pop",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "audit_logged_actions_var_pop_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "var_samp",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "audit_logged_actions_var_samp_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "variance",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "audit_logged_actions_variance_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "audit_logged_actions_append_input",
+        "description": "append existing jsonb value of filtered columns with new jsonb value",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "changed_fields",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hasura_user",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "row_data",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "audit_logged_actions_avg_fields",
+        "description": "aggregate avg on columns",
+        "fields": [
+          {
+            "name": "client_port",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transaction_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "audit_logged_actions_bool_exp",
+        "description": "Boolean expression to filter rows from the table \"audit.logged_actions\". All fields are combined with a logical 'AND'.",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "_and",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_bool_exp",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_not",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "audit_logged_actions_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_or",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_bool_exp",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_clk",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "timestamptz_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_stm",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "timestamptz_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_tx",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "timestamptz_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "application_name",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "changed_fields",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "jsonb_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_addr",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "inet_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_port",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "Int_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_query",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event_id",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "bigint_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hasura_user",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "jsonb_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "relid",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "oid_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "row_data",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "jsonb_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "schema_name",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "session_user_name",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "statement_only",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "Boolean_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "table_name",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transaction_id",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "bigint_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "audit_logged_actions_constraint",
+        "description": "unique or primary key constraints on table \"audit.logged_actions\"",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "logged_actions_pkey",
+            "description": "unique or primary key constraint",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "audit_logged_actions_delete_at_path_input",
+        "description": "delete the field or element with specified path (for JSON arrays, negative integers count from the end)",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "changed_fields",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hasura_user",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "row_data",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "audit_logged_actions_delete_elem_input",
+        "description": "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "changed_fields",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hasura_user",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "row_data",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "audit_logged_actions_delete_key_input",
+        "description": "delete key/value pair or string element. key/value pairs are matched based on their key value",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "changed_fields",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hasura_user",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "row_data",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "audit_logged_actions_inc_input",
+        "description": "input type for incrementing numeric columns in table \"audit.logged_actions\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "client_port",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event_id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "bigint",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transaction_id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "bigint",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "audit_logged_actions_insert_input",
+        "description": "input type for inserting data into table \"audit.logged_actions\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "action",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_clk",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "timestamptz",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_stm",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "timestamptz",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_tx",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "timestamptz",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "application_name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "changed_fields",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_addr",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "inet",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_port",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_query",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event_id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "bigint",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hasura_user",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "relid",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "oid",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "row_data",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "schema_name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "session_user_name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "statement_only",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "table_name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transaction_id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "bigint",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "audit_logged_actions_max_fields",
+        "description": "aggregate max on columns",
+        "fields": [
+          {
+            "name": "action",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_clk",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "timestamptz",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_stm",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "timestamptz",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_tx",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "timestamptz",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "application_name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_port",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_query",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "bigint",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "schema_name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "session_user_name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "table_name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transaction_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "bigint",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "audit_logged_actions_min_fields",
+        "description": "aggregate min on columns",
+        "fields": [
+          {
+            "name": "action",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_clk",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "timestamptz",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_stm",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "timestamptz",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_tx",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "timestamptz",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "application_name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_port",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_query",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "bigint",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "schema_name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "session_user_name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "table_name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transaction_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "bigint",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "audit_logged_actions_mutation_response",
+        "description": "response of any mutation on the table \"audit.logged_actions\"",
+        "fields": [
+          {
+            "name": "affected_rows",
+            "description": "number of rows affected by the mutation",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "returning",
+            "description": "data from the rows affected by the mutation",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "audit_logged_actions",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "audit_logged_actions_on_conflict",
+        "description": "on conflict condition type for table \"audit.logged_actions\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "constraint",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "audit_logged_actions_constraint",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "update_columns",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "audit_logged_actions_update_column",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "where",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "audit_logged_actions_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "audit_logged_actions_order_by",
+        "description": "Ordering options when selecting data from \"audit.logged_actions\".",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "action",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_clk",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_stm",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_tx",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "application_name",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "changed_fields",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_addr",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_port",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_query",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hasura_user",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "relid",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "row_data",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "schema_name",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "session_user_name",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "statement_only",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "table_name",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transaction_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "audit_logged_actions_pk_columns_input",
+        "description": "primary key columns input for table: audit_logged_actions",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "action_tstamp_stm",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "timestamptz",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event_id",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "bigint",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "audit_logged_actions_prepend_input",
+        "description": "prepend existing jsonb value of filtered columns with new jsonb value",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "changed_fields",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hasura_user",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "row_data",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "audit_logged_actions_select_column",
+        "description": "select columns of table \"audit.logged_actions\"",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "action",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_clk",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_stm",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_tx",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "application_name",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "changed_fields",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_addr",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_port",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_query",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event_id",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hasura_user",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "relid",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "row_data",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "schema_name",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "session_user_name",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "statement_only",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "table_name",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transaction_id",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "audit_logged_actions_set_input",
+        "description": "input type for updating data in table \"audit.logged_actions\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "action",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_clk",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "timestamptz",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_stm",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "timestamptz",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_tx",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "timestamptz",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "application_name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "changed_fields",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_addr",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "inet",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_port",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_query",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event_id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "bigint",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hasura_user",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "relid",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "oid",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "row_data",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "schema_name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "session_user_name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "statement_only",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "table_name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transaction_id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "bigint",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "audit_logged_actions_stddev_fields",
+        "description": "aggregate stddev on columns",
+        "fields": [
+          {
+            "name": "client_port",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transaction_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "audit_logged_actions_stddev_pop_fields",
+        "description": "aggregate stddev_pop on columns",
+        "fields": [
+          {
+            "name": "client_port",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transaction_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "audit_logged_actions_stddev_samp_fields",
+        "description": "aggregate stddev_samp on columns",
+        "fields": [
+          {
+            "name": "client_port",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transaction_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "audit_logged_actions_sum_fields",
+        "description": "aggregate sum on columns",
+        "fields": [
+          {
+            "name": "client_port",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "bigint",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transaction_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "bigint",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "audit_logged_actions_update_column",
+        "description": "update columns of table \"audit.logged_actions\"",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "action",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_clk",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_stm",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action_tstamp_tx",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "application_name",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "changed_fields",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_addr",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_port",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "client_query",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event_id",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hasura_user",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "relid",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "row_data",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "schema_name",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "session_user_name",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "statement_only",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "table_name",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transaction_id",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "audit_logged_actions_var_pop_fields",
+        "description": "aggregate var_pop on columns",
+        "fields": [
+          {
+            "name": "client_port",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transaction_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "audit_logged_actions_var_samp_fields",
+        "description": "aggregate var_samp on columns",
+        "fields": [
+          {
+            "name": "client_port",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transaction_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "audit_logged_actions_variance_fields",
+        "description": "aggregate variance on columns",
+        "fields": [
+          {
+            "name": "client_port",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transaction_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "bigint",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "bigint_comparison_exp",
+        "description": "Boolean expression to compare columns of type \"bigint\". All fields are combined with logical 'AND'.",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "bigint",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_gt",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "bigint",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_gte",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "bigint",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "bigint",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_is_null",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_lt",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "bigint",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_lte",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "bigint",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_neq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "bigint",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "bigint",
+                  "ofType": null
+                }
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -21281,6 +24176,151 @@
         "possibleTypes": null
       },
       {
+        "kind": "SCALAR",
+        "name": "inet",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "inet_comparison_exp",
+        "description": "Boolean expression to compare columns of type \"inet\". All fields are combined with logical 'AND'.",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "inet",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_gt",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "inet",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_gte",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "inet",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "inet",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_is_null",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_lt",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "inet",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_lte",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "inet",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_neq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "inet",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "inet",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
         "name": "invites",
         "description": "columns and relationships of \"invites\"",
@@ -28366,6 +31406,80 @@
             "deprecationReason": null
           },
           {
+            "name": "delete_audit_logged_actions",
+            "description": "delete data from the table: \"audit.logged_actions\"",
+            "args": [
+              {
+                "name": "where",
+                "description": "filter the rows which have to be deleted",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "audit_logged_actions_bool_exp",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "audit_logged_actions_mutation_response",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "delete_audit_logged_actions_by_pk",
+            "description": "delete single row from the table: \"audit.logged_actions\"",
+            "args": [
+              {
+                "name": "action_tstamp_stm",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "timestamptz",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "event_id",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "bigint",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "audit_logged_actions",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "delete_conceptnet_data",
             "description": "delete data from the table: \"conceptnet.data\"",
             "args": [
@@ -29057,6 +32171,96 @@
             "type": {
               "kind": "OBJECT",
               "name": "atomic_data",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "insert_audit_logged_actions",
+            "description": "insert data into the table: \"audit.logged_actions\"",
+            "args": [
+              {
+                "name": "objects",
+                "description": "the rows to be inserted",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "INPUT_OBJECT",
+                        "name": "audit_logged_actions_insert_input",
+                        "ofType": null
+                      }
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "on_conflict",
+                "description": "on conflict condition",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_on_conflict",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "audit_logged_actions_mutation_response",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "insert_audit_logged_actions_one",
+            "description": "insert a single row into the table: \"audit.logged_actions\"",
+            "args": [
+              {
+                "name": "object",
+                "description": "the row to be inserted",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "audit_logged_actions_insert_input",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "on_conflict",
+                "description": "on conflict condition",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_on_conflict",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "audit_logged_actions",
               "ofType": null
             },
             "isDeprecated": false,
@@ -30243,6 +33447,232 @@
             "type": {
               "kind": "OBJECT",
               "name": "atomic_data_mutation_response",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "update_audit_logged_actions",
+            "description": "update data of the table: \"audit.logged_actions\"",
+            "args": [
+              {
+                "name": "_append",
+                "description": "append existing jsonb value of filtered columns with new jsonb value",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_append_input",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "_delete_at_path",
+                "description": "delete the field or element with specified path (for JSON arrays, negative integers count from the end)",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_delete_at_path_input",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "_delete_elem",
+                "description": "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_delete_elem_input",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "_delete_key",
+                "description": "delete key/value pair or string element. key/value pairs are matched based on their key value",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_delete_key_input",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "_inc",
+                "description": "increments the numeric columns with given value of the filtered values",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_inc_input",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "_prepend",
+                "description": "prepend existing jsonb value of filtered columns with new jsonb value",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_prepend_input",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "_set",
+                "description": "sets the columns of the filtered rows to the given values",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_set_input",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows which have to be updated",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "audit_logged_actions_bool_exp",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "audit_logged_actions_mutation_response",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "update_audit_logged_actions_by_pk",
+            "description": "update single row of the table: \"audit.logged_actions\"",
+            "args": [
+              {
+                "name": "_append",
+                "description": "append existing jsonb value of filtered columns with new jsonb value",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_append_input",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "_delete_at_path",
+                "description": "delete the field or element with specified path (for JSON arrays, negative integers count from the end)",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_delete_at_path_input",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "_delete_elem",
+                "description": "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_delete_elem_input",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "_delete_key",
+                "description": "delete key/value pair or string element. key/value pairs are matched based on their key value",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_delete_key_input",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "_inc",
+                "description": "increments the numeric columns with given value of the filtered values",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_inc_input",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "_prepend",
+                "description": "prepend existing jsonb value of filtered columns with new jsonb value",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_prepend_input",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "_set",
+                "description": "sets the columns of the filtered rows to the given values",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_set_input",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "pk_columns",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "audit_logged_actions_pk_columns_input",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "audit_logged_actions",
               "ofType": null
             },
             "isDeprecated": false,
@@ -32936,6 +36366,151 @@
         "possibleTypes": null
       },
       {
+        "kind": "SCALAR",
+        "name": "oid",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "oid_comparison_exp",
+        "description": "Boolean expression to compare columns of type \"oid\". All fields are combined with logical 'AND'.",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "oid",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_gt",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "oid",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_gte",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "oid",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "oid",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_is_null",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_lt",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "oid",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_lte",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "oid",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_neq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "oid",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "oid",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "ENUM",
         "name": "order_by",
         "description": "column ordering options",
@@ -33376,6 +36951,245 @@
             "deprecationReason": null
           },
           {
+            "name": "audit_logged_actions",
+            "description": "fetch data from the table: \"audit.logged_actions\"",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "audit_logged_actions_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "audit_logged_actions_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "audit_logged_actions",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "audit_logged_actions_aggregate",
+            "description": "fetch aggregated fields from the table: \"audit.logged_actions\"",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "audit_logged_actions_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "audit_logged_actions_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "audit_logged_actions_aggregate",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "audit_logged_actions_by_pk",
+            "description": "fetch data from the table: \"audit.logged_actions\" using primary key columns",
+            "args": [
+              {
+                "name": "action_tstamp_stm",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "timestamptz",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "event_id",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "bigint",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "audit_logged_actions",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "callApplyVoiceCSS",
             "description": "Apply voice CSS to the SSML input",
             "args": [
@@ -33609,7 +37423,7 @@
             "description": "Measure sentences similarity",
             "args": [
               {
-                "name": "compareWith",
+                "name": "candidates",
                 "description": null,
                 "type": {
                   "kind": "LIST",
@@ -33625,7 +37439,7 @@
                 "deprecationReason": null
               },
               {
-                "name": "sentence",
+                "name": "input",
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
@@ -33650,15 +37464,19 @@
             "description": "Perform next dialog turn prediction",
             "args": [
               {
-                "name": "alternatives",
-                "description": "Alternatives to choose from",
+                "name": "history",
+                "description": "Utterances history",
                 "type": {
                   "kind": "LIST",
                   "name": null,
                   "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "Turn",
+                      "ofType": null
+                    }
                   }
                 },
                 "defaultValue": null,
@@ -33666,8 +37484,8 @@
                 "deprecationReason": null
               },
               {
-                "name": "history",
-                "description": "Utterances history",
+                "name": "input",
+                "description": "Alternatives to choose from",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -33683,13 +37501,9 @@
               }
             ],
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "DialogAlternative",
-                "ofType": null
-              }
+              "kind": "OBJECT",
+              "name": "Result",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -33846,7 +37660,7 @@
           },
           {
             "name": "callParaphraseSentence",
-            "description": null,
+            "description": "Perform sentence paraphrasing",
             "args": [
               {
                 "name": "input",
@@ -33857,18 +37671,6 @@
                   "ofType": null
                 },
                 "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "number_of_paraphrases",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": "10",
                 "isDeprecated": false,
                 "deprecationReason": null
               }
@@ -34012,31 +37814,6 @@
                 "name": "RelationResult",
                 "ofType": null
               }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "callShowDocs",
-            "description": null,
-            "args": [
-              {
-                "name": "service",
-                "description": null,
-                "type": {
-                  "kind": "ENUM",
-                  "name": "ServiceName",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
-            "type": {
-              "kind": "OBJECT",
-              "name": "ServiceInfo",
-              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -36623,6 +40400,200 @@
             "deprecationReason": null
           },
           {
+            "name": "me",
+            "description": "execute function \"me\" which returns \"developers\"",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "developers_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "developers_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "developers_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "developers",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "me_aggregate",
+            "description": "execute function \"me\" and query aggregates on result of table type \"developers\"",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "developers_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "developers_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "developers_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "developers_aggregate",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "objects",
             "description": "fetch data from the table: \"objects\"",
             "args": [
@@ -38576,6 +42547,245 @@
                 "name": "atomic_data_aggregate",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "audit_logged_actions",
+            "description": "fetch data from the table: \"audit.logged_actions\"",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "audit_logged_actions_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "audit_logged_actions_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "audit_logged_actions",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "audit_logged_actions_aggregate",
+            "description": "fetch aggregated fields from the table: \"audit.logged_actions\"",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "audit_logged_actions_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "audit_logged_actions_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "audit_logged_actions_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "audit_logged_actions_aggregate",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "audit_logged_actions_by_pk",
+            "description": "fetch data from the table: \"audit.logged_actions\" using primary key columns",
+            "args": [
+              {
+                "name": "action_tstamp_stm",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "timestamptz",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "event_id",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "bigint",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "audit_logged_actions",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -41069,6 +45279,200 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "last_utterance_aggregate",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "me",
+            "description": "execute function \"me\" which returns \"developers\"",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "developers_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "developers_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "developers_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "developers",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "me_aggregate",
+            "description": "execute function \"me\" and query aggregates on result of table type \"developers\"",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "developers_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "developers_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "developers_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "developers_aggregate",
                 "ofType": null
               }
             },
