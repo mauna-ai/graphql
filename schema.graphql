@@ -8069,12 +8069,12 @@ type query_root {
     """
     Relations to pull out of text
     """
-    relations: [Relations] = null
+    relation: Relations = null
 
     """
     Text string
     """
-    text: String!
+    input: String!
   ): [RelationResult]
 
   """
