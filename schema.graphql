@@ -7984,12 +7984,12 @@ type query_root {
     """
     Categories to pull out of text
     """
-    categories: [Categories] = null
+    category: [Categories] = null
 
     """
     Text string
     """
-    text: String!
+    input: String!
   ): [RelationResult]
 
   """
@@ -9095,7 +9095,7 @@ type RelationResult {
   """
   Related texts
   """
-  texts: [String]
+  result: [String]
 }
 
 """
