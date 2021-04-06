@@ -1838,7 +1838,7 @@ type ContextResult {
   """
   SLING document
   """
-  context: SlingDocument
+  result: SlingDocument
 }
 
 """
@@ -8059,7 +8059,7 @@ type query_root {
     """
     List of possible turns
     """
-    turns: [ContextObject]
+    history: [ContextObject] = []
   ): [ContextResult]
 
   """
