@@ -8021,7 +8021,7 @@ type query_root {
     """
     Utterances history
     """
-    history: [Turn!]
+    history: [Turn!] = []
 
     """
     Alternatives to choose from
