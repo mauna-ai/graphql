@@ -7975,7 +7975,7 @@ type query_root {
   """
   Perform chit chat
   """
-  callChitchat(history: [Turn!], input: String): ChitchatResponse
+  callChitchat(history: [Turn!] = [], input: String): ChitchatResponse
 
   """
   Predict categories
