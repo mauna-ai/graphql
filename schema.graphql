@@ -7984,7 +7984,7 @@ type query_root {
     """
     Categories to pull out of text
     """
-    category: [Categories] = null
+    category: Categories = null
 
     """
     Text string
