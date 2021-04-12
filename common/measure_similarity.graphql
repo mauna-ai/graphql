@@ -1,11 +1,11 @@
-query measureSimilarity($sentence: String!, $compareWith: [String!]!) {
+query measureSimilarity($input: String!, $candidates: [String!]!) {
   result: callMeasureSimilarity(
-    sentence: $sentence
-    compareWith: $compareWith
+    input: $input
+    candidates: $candidates
   ) {
     scores: result {
       score
-      sentencePair
+      candidate
     }
   }
 }

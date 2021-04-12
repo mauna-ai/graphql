@@ -1,5 +1,5 @@
-query textToSpeech($text: String!) {
-  result: callTextToSpeech(text: $text) {
-    audio: audioB64
+query textToSpeech($input: String!) {
+  result: callTextToSpeech(input: $input) {
+    audioBase64: result
   }
 }

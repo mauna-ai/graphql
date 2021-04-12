@@ -1,0 +1,5 @@
+query getConceptnetRelations($text: String!, $relation: Relation!) {
+  result: callPredictRelation(text: $text, relation: $relation) {
+    predictions: result
+  }
+}
