@@ -1,23 +1,43 @@
-query parseTextTokens($text: String!) {
-  result: callNlpDoc(text: $text) {
+query parseTextTokens($input: String!) {
+  result: callNLU(input: $input) {
     tokens {
-      dependency: dep
-      entity_type: ent_type
-      is_alpha
-      is_currency
-      is_digit
-      is_oov
-      is_sent_start
-      is_stop
-      is_title
-      lemma
-      like_email
-      like_num
-      like_url
-      part_of_speech: pos
-      prob
-      tag
-      text
+      ...TokenSubtree
+    }
+  }
+}
+
+fragment TokenSubtreeFields on NLUToken {
+  dependency
+  entity_type
+  is_alpha
+  is_currency
+  is_digit
+  is_oov
+  is_sent_start
+  is_stop
+  is_title
+  lemma
+  like_email
+  like_num
+  like_url
+  part_of_speech
+  log_probability
+  tag
+  text
+}
+
+fragment TokenSubtree on NLUToken {
+  ...TokenSubtreeFields
+  subtree {
+    ...TokenSubtreeFields
+    subtree {
+      ...TokenSubtreeFields
+      subtree {
+        ...TokenSubtreeFields
+        subtree {
+          ...TokenSubtreeFields
+        }
+      }
     }
   }
 }

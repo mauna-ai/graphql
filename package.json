@@ -7,7 +7,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "check-env": "validEnv HASURA_ADMIN_SECRET",
-        "get-schema": "get-graphql-schema -h X-Hasura-Admin-Secret=$HASURA_ADMIN_SECRET $(pkg-jq -r .graphqlEndpoint) > schema.graphql",
+        "get-schema": "get-graphql-schema -h X-Hasura-Admin-Secret=$HASURA_ADMIN_SECRET ${MAUNA_GRAPHQL_ENDPOINT:-`pkg-jq -r .graphqlEndpoint`} > schema.graphql",
         "get-schema-json": "graphql-codegen --config codegen.js",
         "docs": "bundle exec rake generate_docs",
         "prepublishOnly": "npm run lint",

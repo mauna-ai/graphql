@@ -1,9 +1,6 @@
-query getSentiment($text: String!) {
-  result: callNlpDoc(text: $text) {
-    sentiment
-    sentences: sents {
-      text
-      sentiment
-    }
+query getSentiment($input: String!) {
+  result: callSentimentAnalysis(input: $input) {
+    label
+    score
   }
 }

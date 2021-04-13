@@ -1,8 +1,5 @@
 query measureSimilarity($input: String!, $candidates: [String!]!) {
-  result: callMeasureSimilarity(
-    input: $input
-    candidates: $candidates
-  ) {
+  result: callMeasureSimilarity(input: $input, candidates: $candidates) {
     scores: result {
       score
       candidate
