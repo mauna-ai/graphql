@@ -1,7 +1,5 @@
 # Mauna GraphQL
 
-_Version: 0.2.8_
-
 GraphQL schema and common queries for mauna. Reference documentation can be found [here](https://mauna-ai.github.io/graphql/docs/).
 
 ## Instructions for building package
@@ -21,7 +19,6 @@ Docs are built using a ruby gem `graphql_docs` and published on github pages.
 
 - Install `bundler`
 - Run `bundle install --path vendor/bundle`
-- Update version on this README
 - Run `npm run docs`
 - Commit all changes,
 - Then `git checkout gh-pages` and `git merge <original-branch>`

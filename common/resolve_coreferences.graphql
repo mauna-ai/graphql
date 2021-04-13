@@ -1,15 +1,13 @@
-query resolveCoreferences($text: String!) {
-  result: callNlpDoc(text: $text) {
-    coref: extension {
-      detected: has_coref
-      resolvedOutput: coref_resolved
-      clusters: coref_scores {
-        mention
-        references: scores {
-          match: mention
-          score
-        }
+query resolveCoreferences($input: String!) {
+  result: callResolveCoreference(input: $input) {
+    resolved_text: result
+    coreferences {
+      mention
+      reference {
+        score
+        text
       }
     }
+    has_coreference
   }
 }
