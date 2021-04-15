@@ -1,5 +1,5 @@
-query commonsenseReasoning($text: String!, $category: Category!) {
-  result: callCommonsense(text: $text, category: $category) {
+query commonsenseReasoning($input: String!, $category: Category!) {
+  result: callCommonsense(input: $input, category: $category) {
     predictions: result
   }
 }
