@@ -62,6 +62,21 @@ enum Agent {
   USER
 }
 
+"""
+Answer along with confidence score
+"""
+type Answer {
+  """
+  Answer based on the given context
+  """
+  answer: String!
+
+  """
+  Confidence in the prediction
+  """
+  score: Float!
+}
+
 scalar app_status
 
 """
@@ -1481,17 +1496,31 @@ input Boolean_comparison_exp {
 }
 
 """
-Categories applied to whole document (label, score), or to spans (start, end, label, score).
+Category applied to whole document (label, score), or to spans (start, end, label, score).
 """
 type Cat {
+  """
+  Span end position
+  """
   end: Int
+
+  """
+  Document label
+  """
   label: String
+
+  """
+  Document score
+  """
   score: Float
+
+  """
+  Span start position
+  """
   start: Int
 }
 
-enum Categories {
-  all
+enum Category {
   oEffect
   oReact
   oWant
@@ -1508,6 +1537,13 @@ Chitchat results
 """
 type ChitchatResponse {
   result: String
+}
+
+"""
+Topic classification results
+"""
+type ClassificationResult {
+  result: [TopicScore]
 }
 
 """
@@ -1799,11 +1835,6 @@ interface Container {
   has_vector: Boolean
 
   """
-  A scalar value indicating the positivity or negativity of the object.
-  """
-  sentiment: Float
-
-  """
   Verbatim text content.
   """
   text: String
@@ -1824,13 +1855,6 @@ interface Container {
   vector_norm: Float
 }
 
-input ContextObject {
-  """
-  Dialog turn content
-  """
-  content: String
-}
-
 """
 SLING document container
 """
@@ -1838,7 +1862,7 @@ type ContextResult {
   """
   SLING document
   """
-  result: SlingDocument
+  result: [SlingDocument]
 }
 
 """
@@ -2536,11 +2560,53 @@ input conversations_variance_order_by {
 }
 
 type CorefCluster {
+  """
+  Index of the cluster in the Doc
+  """
   i: Int
 }
 
-type CorefScores {
+"""
+Coreference resolution data
+"""
+type CorefResult {
+  """
+  Scores of the coreference resolution between mentions.
+  """
+  coreferences: [CorefResultScores]
+
+  """
+  Has any coreference has been resolved in the Doc
+  """
+  has_coreference: Boolean
+
+  """
+  Unicode representation of the doc where each corefering mention is replaced by the main mention in the associated cluster.
+  """
+  result: String
+}
+
+type CorefResultScores {
+  """
+  Cluster mention
+  """
   mention: String
+
+  """
+  Scores of the coreference resolution between mentions.
+  """
+  reference: [ResultScores]
+}
+
+type CorefScores {
+  """
+  Cluster mention
+  """
+  mention: String
+
+  """
+  Scores of the coreference resolution between mentions.
+  """
   scores: [Scores]
 }
 
@@ -2677,66 +2743,6 @@ type developers {
   """
   An array relationship
   """
-  invites(
-    """
-    distinct select on columns
-    """
-    distinct_on: [invites_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [invites_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: invites_bool_exp
-  ): [invites!]!
-
-  """
-  An aggregate relationship
-  """
-  invites_aggregate(
-    """
-    distinct select on columns
-    """
-    distinct_on: [invites_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [invites_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: invites_bool_exp
-  ): invites_aggregate!
-
-  """
-  An array relationship
-  """
   kv_stores(
     """
     distinct select on columns
@@ -2858,7 +2864,6 @@ input developers_bool_exp {
   email: String_comparison_exp
   events: events_bool_exp
   github_handle: String_comparison_exp
-  invites: invites_bool_exp
   kv_stores: kv_store_bool_exp
   metadata: jsonb_comparison_exp
   name: String_comparison_exp
@@ -2937,7 +2942,6 @@ input developers_insert_input {
   email: String
   events: events_arr_rel_insert_input
   github_handle: String
-  invites: invites_arr_rel_insert_input
   kv_stores: kv_store_arr_rel_insert_input
   metadata: jsonb
   name: String
@@ -3019,7 +3023,6 @@ input developers_order_by {
   email: order_by
   events_aggregate: events_aggregate_order_by
   github_handle: order_by
-  invites_aggregate: invites_aggregate_order_by
   kv_stores_aggregate: kv_store_aggregate_order_by
   metadata: order_by
   name: order_by
@@ -3226,13 +3229,25 @@ type DialogAlternative {
 }
 
 type DocExtension {
+  """
+  All the clusters of corefering mentions in the doc
+  """
   coref_clusters: [CorefCluster]
+
+  """
+  Unicode representation of the doc where each corefering mention is replaced by the main mention in the associated cluster.
+  """
   coref_resolved: String
+
+  """
+  Scores of the coreference resolution between mentions.
+  """
   coref_scores: [CorefScores]
+
+  """
+  Has any coreference has been resolved in the Doc
+  """
   has_coref: Boolean
-  has_nfh: Boolean
-  nfh: [Span]
-  nfh_items: [Span]
 }
 
 """
@@ -4625,493 +4640,6 @@ input Int_comparison_exp {
 }
 
 """
-columns and relationships of "invites"
-"""
-type invites {
-  accepted: Boolean!
-  created_at: timestamptz!
-
-  """
-  An object relationship
-  """
-  developer: developers!
-  invited_email: String!
-  inviter_id: Int!
-  metadata(
-    """
-    JSON select path
-    """
-    path: String
-  ): jsonb!
-  object_id: Int!
-  resend_count: Int!
-}
-
-"""
-aggregated selection of "invites"
-"""
-type invites_aggregate {
-  aggregate: invites_aggregate_fields
-  nodes: [invites!]!
-}
-
-"""
-aggregate fields of "invites"
-"""
-type invites_aggregate_fields {
-  avg: invites_avg_fields
-  count(columns: [invites_select_column!], distinct: Boolean): Int!
-  max: invites_max_fields
-  min: invites_min_fields
-  stddev: invites_stddev_fields
-  stddev_pop: invites_stddev_pop_fields
-  stddev_samp: invites_stddev_samp_fields
-  sum: invites_sum_fields
-  var_pop: invites_var_pop_fields
-  var_samp: invites_var_samp_fields
-  variance: invites_variance_fields
-}
-
-"""
-order by aggregate values of table "invites"
-"""
-input invites_aggregate_order_by {
-  avg: invites_avg_order_by
-  count: order_by
-  max: invites_max_order_by
-  min: invites_min_order_by
-  stddev: invites_stddev_order_by
-  stddev_pop: invites_stddev_pop_order_by
-  stddev_samp: invites_stddev_samp_order_by
-  sum: invites_sum_order_by
-  var_pop: invites_var_pop_order_by
-  var_samp: invites_var_samp_order_by
-  variance: invites_variance_order_by
-}
-
-"""
-append existing jsonb value of filtered columns with new jsonb value
-"""
-input invites_append_input {
-  metadata: jsonb
-}
-
-"""
-input type for inserting array relation for remote table "invites"
-"""
-input invites_arr_rel_insert_input {
-  data: [invites_insert_input!]!
-
-  """
-  on conflict condition
-  """
-  on_conflict: invites_on_conflict
-}
-
-"""
-aggregate avg on columns
-"""
-type invites_avg_fields {
-  inviter_id: Float
-  object_id: Float
-  resend_count: Float
-}
-
-"""
-order by avg() on columns of table "invites"
-"""
-input invites_avg_order_by {
-  inviter_id: order_by
-  object_id: order_by
-  resend_count: order_by
-}
-
-"""
-Boolean expression to filter rows from the table "invites". All fields are combined with a logical 'AND'.
-"""
-input invites_bool_exp {
-  _and: [invites_bool_exp!]
-  _not: invites_bool_exp
-  _or: [invites_bool_exp!]
-  accepted: Boolean_comparison_exp
-  created_at: timestamptz_comparison_exp
-  developer: developers_bool_exp
-  invited_email: String_comparison_exp
-  inviter_id: Int_comparison_exp
-  metadata: jsonb_comparison_exp
-  object_id: Int_comparison_exp
-  resend_count: Int_comparison_exp
-}
-
-"""
-unique or primary key constraints on table "invites"
-"""
-enum invites_constraint {
-  """
-  unique or primary key constraint
-  """
-  invites_inviter_id_invited_email_key
-
-  """
-  unique or primary key constraint
-  """
-  invites_object_id_key
-}
-
-"""
-delete the field or element with specified path (for JSON arrays, negative integers count from the end)
-"""
-input invites_delete_at_path_input {
-  metadata: [String!]
-}
-
-"""
-delete the array element with specified index (negative integers count from the
-end). throws an error if top level container is not an array
-"""
-input invites_delete_elem_input {
-  metadata: Int
-}
-
-"""
-delete key/value pair or string element. key/value pairs are matched based on their key value
-"""
-input invites_delete_key_input {
-  metadata: String
-}
-
-"""
-input type for incrementing numeric columns in table "invites"
-"""
-input invites_inc_input {
-  inviter_id: Int
-  object_id: Int
-  resend_count: Int
-}
-
-"""
-input type for inserting data into table "invites"
-"""
-input invites_insert_input {
-  accepted: Boolean
-  created_at: timestamptz
-  developer: developers_obj_rel_insert_input
-  invited_email: String
-  inviter_id: Int
-  metadata: jsonb
-  object_id: Int
-  resend_count: Int
-}
-
-"""
-aggregate max on columns
-"""
-type invites_max_fields {
-  created_at: timestamptz
-  invited_email: String
-  inviter_id: Int
-  object_id: Int
-  resend_count: Int
-}
-
-"""
-order by max() on columns of table "invites"
-"""
-input invites_max_order_by {
-  created_at: order_by
-  invited_email: order_by
-  inviter_id: order_by
-  object_id: order_by
-  resend_count: order_by
-}
-
-"""
-aggregate min on columns
-"""
-type invites_min_fields {
-  created_at: timestamptz
-  invited_email: String
-  inviter_id: Int
-  object_id: Int
-  resend_count: Int
-}
-
-"""
-order by min() on columns of table "invites"
-"""
-input invites_min_order_by {
-  created_at: order_by
-  invited_email: order_by
-  inviter_id: order_by
-  object_id: order_by
-  resend_count: order_by
-}
-
-"""
-response of any mutation on the table "invites"
-"""
-type invites_mutation_response {
-  """
-  number of rows affected by the mutation
-  """
-  affected_rows: Int!
-
-  """
-  data from the rows affected by the mutation
-  """
-  returning: [invites!]!
-}
-
-"""
-on conflict condition type for table "invites"
-"""
-input invites_on_conflict {
-  constraint: invites_constraint!
-  update_columns: [invites_update_column!]!
-  where: invites_bool_exp
-}
-
-"""
-Ordering options when selecting data from "invites".
-"""
-input invites_order_by {
-  accepted: order_by
-  created_at: order_by
-  developer: developers_order_by
-  invited_email: order_by
-  inviter_id: order_by
-  metadata: order_by
-  object_id: order_by
-  resend_count: order_by
-}
-
-"""
-prepend existing jsonb value of filtered columns with new jsonb value
-"""
-input invites_prepend_input {
-  metadata: jsonb
-}
-
-"""
-select columns of table "invites"
-"""
-enum invites_select_column {
-  """
-  column name
-  """
-  accepted
-
-  """
-  column name
-  """
-  created_at
-
-  """
-  column name
-  """
-  invited_email
-
-  """
-  column name
-  """
-  inviter_id
-
-  """
-  column name
-  """
-  metadata
-
-  """
-  column name
-  """
-  object_id
-
-  """
-  column name
-  """
-  resend_count
-}
-
-"""
-input type for updating data in table "invites"
-"""
-input invites_set_input {
-  accepted: Boolean
-  created_at: timestamptz
-  invited_email: String
-  inviter_id: Int
-  metadata: jsonb
-  object_id: Int
-  resend_count: Int
-}
-
-"""
-aggregate stddev on columns
-"""
-type invites_stddev_fields {
-  inviter_id: Float
-  object_id: Float
-  resend_count: Float
-}
-
-"""
-order by stddev() on columns of table "invites"
-"""
-input invites_stddev_order_by {
-  inviter_id: order_by
-  object_id: order_by
-  resend_count: order_by
-}
-
-"""
-aggregate stddev_pop on columns
-"""
-type invites_stddev_pop_fields {
-  inviter_id: Float
-  object_id: Float
-  resend_count: Float
-}
-
-"""
-order by stddev_pop() on columns of table "invites"
-"""
-input invites_stddev_pop_order_by {
-  inviter_id: order_by
-  object_id: order_by
-  resend_count: order_by
-}
-
-"""
-aggregate stddev_samp on columns
-"""
-type invites_stddev_samp_fields {
-  inviter_id: Float
-  object_id: Float
-  resend_count: Float
-}
-
-"""
-order by stddev_samp() on columns of table "invites"
-"""
-input invites_stddev_samp_order_by {
-  inviter_id: order_by
-  object_id: order_by
-  resend_count: order_by
-}
-
-"""
-aggregate sum on columns
-"""
-type invites_sum_fields {
-  inviter_id: Int
-  object_id: Int
-  resend_count: Int
-}
-
-"""
-order by sum() on columns of table "invites"
-"""
-input invites_sum_order_by {
-  inviter_id: order_by
-  object_id: order_by
-  resend_count: order_by
-}
-
-"""
-update columns of table "invites"
-"""
-enum invites_update_column {
-  """
-  column name
-  """
-  accepted
-
-  """
-  column name
-  """
-  created_at
-
-  """
-  column name
-  """
-  invited_email
-
-  """
-  column name
-  """
-  inviter_id
-
-  """
-  column name
-  """
-  metadata
-
-  """
-  column name
-  """
-  object_id
-
-  """
-  column name
-  """
-  resend_count
-}
-
-"""
-aggregate var_pop on columns
-"""
-type invites_var_pop_fields {
-  inviter_id: Float
-  object_id: Float
-  resend_count: Float
-}
-
-"""
-order by var_pop() on columns of table "invites"
-"""
-input invites_var_pop_order_by {
-  inviter_id: order_by
-  object_id: order_by
-  resend_count: order_by
-}
-
-"""
-aggregate var_samp on columns
-"""
-type invites_var_samp_fields {
-  inviter_id: Float
-  object_id: Float
-  resend_count: Float
-}
-
-"""
-order by var_samp() on columns of table "invites"
-"""
-input invites_var_samp_order_by {
-  inviter_id: order_by
-  object_id: order_by
-  resend_count: order_by
-}
-
-"""
-aggregate variance on columns
-"""
-type invites_variance_fields {
-  inviter_id: Float
-  object_id: Float
-  resend_count: Float
-}
-
-"""
-order by variance() on columns of table "invites"
-"""
-input invites_variance_order_by {
-  inviter_id: order_by
-  object_id: order_by
-  resend_count: order_by
-}
-
-"""
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
 scalar JSON
@@ -6137,16 +5665,6 @@ type mutation_root {
   ): events_mutation_response
 
   """
-  delete data from the table: "invites"
-  """
-  delete_invites(
-    """
-    filter the rows which have to be deleted
-    """
-    where: invites_bool_exp!
-  ): invites_mutation_response
-
-  """
   delete data from the table: "kv_scope_enum"
   """
   delete_kv_scope_enum(
@@ -6469,36 +5987,6 @@ type mutation_root {
     """
     object: events_insert_input!
   ): events
-
-  """
-  insert data into the table: "invites"
-  """
-  insert_invites(
-    """
-    the rows to be inserted
-    """
-    objects: [invites_insert_input!]!
-
-    """
-    on conflict condition
-    """
-    on_conflict: invites_on_conflict
-  ): invites_mutation_response
-
-  """
-  insert a single row into the table: "invites"
-  """
-  insert_invites_one(
-    """
-    the row to be inserted
-    """
-    object: invites_insert_input!
-
-    """
-    on conflict condition
-    """
-    on_conflict: invites_on_conflict
-  ): invites
 
   """
   insert data into the table: "kv_scope_enum"
@@ -7025,52 +6513,6 @@ type mutation_root {
   ): events_mutation_response
 
   """
-  update data of the table: "invites"
-  """
-  update_invites(
-    """
-    append existing jsonb value of filtered columns with new jsonb value
-    """
-    _append: invites_append_input
-
-    """
-    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
-    """
-    _delete_at_path: invites_delete_at_path_input
-
-    """
-    delete the array element with specified index (negative integers count from
-    the end). throws an error if top level container is not an array
-    """
-    _delete_elem: invites_delete_elem_input
-
-    """
-    delete key/value pair or string element. key/value pairs are matched based on their key value
-    """
-    _delete_key: invites_delete_key_input
-
-    """
-    increments the numeric columns with given value of the filtered values
-    """
-    _inc: invites_inc_input
-
-    """
-    prepend existing jsonb value of filtered columns with new jsonb value
-    """
-    _prepend: invites_prepend_input
-
-    """
-    sets the columns of the filtered rows to the given values
-    """
-    _set: invites_set_input
-
-    """
-    filter the rows which have to be updated
-    """
-    where: invites_bool_exp!
-  ): invites_mutation_response
-
-  """
   update data of the table: "kv_scope_enum"
   """
   update_kv_scope_enum(
@@ -7319,16 +6761,13 @@ type mutation_root {
   ): utterances_mutation_response
 }
 
-type NlpBatch {
-  batch_id: UUID
-  docs: [NlpDoc]
-}
-
 """
-A container for accessing linguistic annotations.
-Access sentences and named entities.
+A container for accessing linguistic annotations. Access sentences and named entities.
 """
 type NlpDoc implements Container {
+  """
+  List of categories applied to the whole document
+  """
   cats: [Cat]
 
   """
@@ -7342,6 +6781,10 @@ type NlpDoc implements Container {
   A boolean value indicating whether a word vector is associated with the object.
   """
   has_vector: Boolean
+
+  """
+  Document ID
+  """
   id: Int
 
   """
@@ -7352,6 +6795,10 @@ type NlpDoc implements Container {
   prepositional phrases, and no relative clauses.
   """
   noun_chunks: [Span]
+
+  """
+  Sentiment score in the interval from zero to one (negative to positive)
+  """
   sentiment: Float
 
   """
@@ -7376,6 +6823,279 @@ type NlpDoc implements Container {
   The tokens of the document.
   """
   tokens: [Token]
+
+  """
+  A real-valued meaning representation.
+  """
+  vector: [Float]
+
+  """
+  The L2 norm of the document’s vector representation.
+  """
+  vector_norm: Float
+}
+
+"""
+A container for accessing linguistic annotations. Access sentences and named entities.
+"""
+type NLUResult implements Container {
+  """
+  The named entities in the document. Returns a list of named entity Span
+  objects, if the entity recognizer has been applied.
+  """
+  entities: [NLUSpan]
+
+  """
+  A boolean value indicating whether a word vector is associated with the object.
+  """
+  has_vector: Boolean
+
+  """
+  The base noun phrases in the document.
+      Returns a list of base noun-phrase Span objects, if the document has been syntactically parsed.
+      A base noun phrase, or “NP chunk”, is a noun phrase that does not permit
+  other NPs to be nested within it – so no NP-level coordination, no
+  prepositional phrases, and no relative clauses.
+  """
+  noun_chunks: [NLUSpan]
+
+  """
+  The the sentences in the document.
+      Sentence spans have no label. To improve accuracy on informal texts, spaCy
+  calculates sentence boundaries from the syntactic dependency parse.
+      If the parser is disabled, the sents iterator will be unavailable.
+  """
+  sentences: [NLUSpan]
+
+  """
+  Verbatim text content.
+  """
+  text: String
+
+  """
+  Text content, with trailing space character if present.
+  """
+  text_with_ws: String
+
+  """
+  The tokens of the document.
+  """
+  tokens: [NLUToken]
+
+  """
+  A real-valued meaning representation.
+  """
+  vector: [Float]
+
+  """
+  The L2 norm of the document’s vector representation.
+  """
+  vector_norm: Float
+}
+
+"""
+A slice from a Doc object
+"""
+type NLUSpan implements Container {
+  """
+  Span references
+  """
+  entities: [NLUSpan]
+
+  """
+  A boolean value indicating whether a word vector is associated with the object.
+  """
+  has_vector: Boolean
+
+  """
+  Base form of the span, with no inflectional suffixes.
+  """
+  lemma: String
+
+  """
+  Tokens within the span and tokens which descend from them.
+  """
+  subtree: [NLUToken]
+
+  """
+  Verbatim text content.
+  """
+  text: String
+
+  """
+  Text content, with trailing space character if present.
+  """
+  text_with_ws: String
+
+  """
+  Token references
+  """
+  tokens: [NLUToken]
+
+  """
+  A real-valued meaning representation.
+  """
+  vector: [Float]
+
+  """
+  The L2 norm of the document’s vector representation.
+  """
+  vector_norm: Float
+}
+
+"""
+An individual token — i.e. a word, punctuation symbol, whitespace, etc.
+"""
+type NLUToken implements Container {
+  """
+  Syntactic dependency relation.
+  """
+  dependency: String
+
+  """
+  Named entity type
+  """
+  entity_type: String
+
+  """
+  A boolean value indicating whether a word vector is associated with the object.
+  """
+  has_vector: Boolean
+
+  """
+  Does the token consist of alphabetic characters?
+  """
+  is_alpha: Boolean
+
+  """
+  Does the token consist of ASCII characters?
+  """
+  is_ascii: Boolean
+
+  """
+  Is the token a bracket?
+  """
+  is_bracket: Boolean
+
+  """
+  Is the token a currency symbol?
+  """
+  is_currency: Boolean
+
+  """
+  Does the token consist of digits?
+  """
+  is_digit: Boolean
+
+  """
+  Is the token a left punctuation mark, e.g. "(" ?
+  """
+  is_left_punct: Boolean
+
+  """
+  Is the token in lowercase?
+  """
+  is_lower: Boolean
+
+  """
+  Is the token out-of-vocabulary (i.e. does it not have a word vector)?
+  """
+  is_oov: Boolean
+
+  """
+  Is the token punctuation?
+  """
+  is_punct: Boolean
+
+  """
+  Is the token a quotation mark?
+  """
+  is_quote: Boolean
+
+  """
+  Is the token a right punctuation mark, e.g. ")" ?
+  """
+  is_right_punct: Boolean
+
+  """
+  A boolean value indicating whether the token starts a sentence
+  """
+  is_sent_start: Boolean
+
+  """
+  Does the token consist of whitespace characters?
+  """
+  is_space: Boolean
+
+  """
+  Is the token part of a “stop list”?
+  """
+  is_stop: Boolean
+
+  """
+  Is the token in titlecase?
+  """
+  is_title: Boolean
+
+  """
+  Is the token in uppercase?
+  """
+  is_upper: Boolean
+
+  """
+  Base form of the token, with no inflectional suffixes.
+  """
+  lemma: String
+
+  """
+  Does the token resemble an email address?
+  """
+  like_email: Boolean
+
+  """
+  Does the token represent a number? e.g. "10.9", "10", "ten", etc.
+  """
+  like_num: Boolean
+
+  """
+  Does the token resemble a URL?
+  """
+  like_url: Boolean
+
+  """
+  Smoothed log probability estimate of token's word type (context-independent entry in the vocabulary).
+  """
+  log_probability: Float
+
+  """
+  The token's norm, i.e. a normalized form of the token text
+  """
+  normalized: String
+
+  """
+  Coarse-grained part-of-speech.
+  """
+  part_of_speech: String
+
+  """
+  A sequence containing the token and all the token’s syntactic descendants.
+  """
+  subtree: [NLUToken]
+
+  """
+  Fine-grained part-of-speech.
+  """
+  tag: String
+
+  """
+  Verbatim text content.
+  """
+  text: String
+
+  """
+  Text content, with trailing space character if present.
+  """
+  text_with_ws: String
 
   """
   A real-valued meaning representation.
@@ -7778,6 +7498,16 @@ type PhraseMatch {
   word_matches: [WordMatch]
 }
 
+"""
+Answer to the given question
+"""
+type QA_Result {
+  """
+  Question-answer result
+  """
+  result: Answer!
+}
+
 type query_root {
   """
   An array relationship
@@ -7970,27 +7700,39 @@ type query_root {
   """
   Apply voice CSS to the SSML input
   """
-  callApplyVoiceCSS(ssml: String, css: String): SSMLResult
+  callApplyVoiceCSS(css: String, ssml: String): SSMLResult
 
   """
   Perform chit chat
   """
-  callChitchat(history: [Turn!] = [], input: String): ChitchatResponse
+  callChitchat(history: [Turn!], input: String): ChitchatResponse
 
   """
-  Predict categories
+  Classify topics
+  """
+  callClassifyTopic(
+    """
+    Allow multiple topics to be applicable
+    """
+    allow_multiple: Boolean = false
+    input: String!
+    topics: [String!]
+  ): ClassificationResult
+
+  """
+  Predict category
   """
   callCommonsense(
     """
-    Categories to pull out of text
+    Category to extract from input
     """
-    category: Categories = null
+    category: Category = null
 
     """
     Text string
     """
     input: String!
-  ): [RelationResult]
+  ): RelationResult
 
   """
   Execute composition pipeline
@@ -8015,32 +7757,29 @@ type query_root {
   ): SentenceSimilarityScores
 
   """
+  Document processing
+  """
+  callNLU(
+    """
+    Text to perform NLU tasks on
+    """
+    input: String!
+  ): NLUResult
+
+  """
   Perform next dialog turn prediction
   """
   callNextDialogTurn(
     """
     Utterances history
     """
-    history: [Turn!] = []
+    history: [Turn!]
 
     """
     Alternatives to choose from
     """
     input: [String]
   ): Result
-  callNlpBatch(
-    batch_id: String
-    batch_size: Int
-    disable: [String] = []
-    model: String = "en_core_web_md"
-    next: Int
-    texts: [String]
-  ): NlpBatch
-  callNlpDoc(
-    disable: [String] = []
-    model: String = "en_core_web_md"
-    text: String!
-  ): NlpDoc
 
   """
   Perform sentence paraphrasing
@@ -8050,7 +7789,7 @@ type query_root {
   """
   Parse ACE sentence
   """
-  callParseACE(type: ACEOutputType, input: String!): ACEResult
+  callParseACE(input: String!, type: ACEOutputType): ACEResult
 
   """
   Parse frame semantics for a list of dialog turns
@@ -8059,34 +7798,61 @@ type query_root {
     """
     List of possible turns
     """
-    history: [ContextObject] = []
-  ): [ContextResult]
+    history: [Turn!]
+  ): ContextResult
 
   """
   Predict relations
   """
   callPredictRelation(
     """
-    Relations to pull out of text
-    """
-    relation: Relations = null
-
-    """
     Text string
     """
     input: String!
-  ): [RelationResult]
+
+    """
+    Relation to extract from input
+    """
+    relation: Relation = null
+  ): RelationResult
+
+  """
+  Answer questions based on context
+  """
+  callQA(
+    """
+    Allow accepting impossible as an answer
+    """
+    allow_impossible: Boolean = true
+    context: String!
+    input: String!
+  ): QA_Result
+
+  """
+  Coreference resolution
+  """
+  callResolveCoreference(
+    """
+    Text to perform coreference resolution on
+    """
+    input: String!
+  ): CorefResult
+
+  """
+  Sentiment analisys
+  """
+  callSentimentAnalysis(
+    """
+    Text to perform sentiment analysis on
+    """
+    input: String!
+  ): [SentimentAnalysisResult]
+  callShowDocs(service: ServiceName): ServiceInfo
 
   """
   Convert speech to text
   """
-  callSpeechToText(
-    """
-    audioB64 string input
-    """
-    audioB64: String!
-    config: STTConfig
-  ): [STTResult]
+  callSpeechToText(config: STTConfig, input: String!): STTResult!
 
   """
   Convert text to speech
@@ -8282,6 +8048,26 @@ type query_root {
     """
     where: conversations_bool_exp
   ): conversations_aggregate!
+
+  """
+  Document processing
+  """
+  deprecatedCallNlpDoc(
+    """
+    List of pipes to disable
+    """
+    disable: [String] = []
+
+    """
+    Text to perform process
+    """
+    input: String!
+
+    """
+    Name of the spaCy model to use
+    """
+    model: String = "en_core_web_md"
+  ): NlpDoc
 
   """
   fetch data from the table: "developers"
@@ -8590,66 +8376,6 @@ type query_root {
     """
     where: history_bool_exp
   ): history_aggregate!
-
-  """
-  An array relationship
-  """
-  invites(
-    """
-    distinct select on columns
-    """
-    distinct_on: [invites_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [invites_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: invites_bool_exp
-  ): [invites!]!
-
-  """
-  An aggregate relationship
-  """
-  invites_aggregate(
-    """
-    distinct select on columns
-    """
-    distinct_on: [invites_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [invites_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: invites_bool_exp
-  ): invites_aggregate!
 
   """
   fetch data from the table: "kv_scope_enum"
@@ -9092,22 +8818,10 @@ type query_root {
   ): utterances_aggregate!
 }
 
-type RelationResult {
-  """
-  Relation name
-  """
-  name: String
-
-  """
-  Related texts
-  """
-  result: [String]
-}
-
 """
 Relation type
 """
-enum Relations {
+enum Relation {
   AtLocation
   CapableOf
   Causes
@@ -9142,7 +8856,13 @@ enum Relations {
   RelatedTo
   SymbolOf
   UsedFor
-  all
+}
+
+type RelationResult {
+  """
+  Extracted relations
+  """
+  result: [String]
 }
 
 """
@@ -9155,8 +8875,27 @@ type Result {
   result: [DialogAlternative]
 }
 
+type ResultScores {
+  """
+  Score of the coreference resolution for this mention
+  """
+  score: Float
+
+  """
+  Mention text
+  """
+  text: String
+}
+
 type Scores {
+  """
+  Mention text
+  """
   mention: String
+
+  """
+  Score of the coreference resolution for this mention
+  """
   score: Float
 }
 
@@ -9170,19 +8909,58 @@ type SentenceSimilarityScores {
   result: [PairSimilarity]
 }
 
+type SentimentAnalysisResult {
+  """
+  Sentiment label
+  """
+  label: String
+
+  """
+  Sentiment score
+  """
+  score: Float
+}
+
+type ServiceInfo {
+  enums: String
+  inputs: String
+  interfaces: String
+  objects: String
+  queries: String
+  scalars: String
+  schema: String
+}
+
+enum ServiceName {
+  ace_parser
+  chitchat_service
+  commonsense
+  compose_services
+  context_frame_parser
+  docs
+  intent_matcher
+  nlu_service
+  paraphrase_sentences
+  sentence_similarity
+  speech_to_text
+  text_to_speech
+  turn_prediction
+  voice_css_render
+}
+
 """
 SLING document
 """
 type SlingDocument {
   """
+  Document text
+  """
+  input: String
+
+  """
   List of mentions
   """
   mentions: [SlingMention]
-
-  """
-  Document text
-  """
-  text: String
 }
 
 """
@@ -9201,11 +8979,22 @@ type SlingMention {
 }
 
 """
-A slice from a Doc object.
+A slice from a Doc object
 """
 type Span implements Container {
+  """
+  A tuple of tokens coordinated to span.root.
+  """
   conjuncts: [Token]
+
+  """
+  End position of the slice
+  """
   end: Int
+
+  """
+  Span references
+  """
   ents: [Span]
   extension: SpanExtension
 
@@ -9213,17 +9002,40 @@ type Span implements Container {
   A boolean value indicating whether a word vector is associated with the object.
   """
   has_vector: Boolean
+
+  """
+  Span label
+  """
   label: String
+
+  """
+  Tokens that are to the left of the span, whose heads are within the span.
+  """
   lefts: [Token]
+
+  """
+  Base form of the span, with no inflectional suffixes.
+  """
   lemma: String
+
+  """
+  Tokens that are to the right of the span, whose heads are within the span.
+  """
   rights: [Token]
+
+  """
+  The token with the shortest path to the root of the sentence
+  """
   root: Token
 
   """
-  A scalar value indicating the positivity or negativity of the object.
+  Start position of the slice
   """
-  sentiment: Float
   start: Int
+
+  """
+  Tokens within the span and tokens which descend from them.
+  """
   subtree: [Token]
 
   """
@@ -9235,6 +9047,10 @@ type Span implements Container {
   Text content, with trailing space character if present.
   """
   text_with_ws: String
+
+  """
+  Token references
+  """
   tokens: [Token]
 
   """
@@ -9249,11 +9065,20 @@ type Span implements Container {
 }
 
 type SpanExtension {
+  """
+  All the clusters of corefering mentions in the doc
+  """
   coref_cluster: CorefCluster
+
+  """
+  Scores of the coreference resolution between mentions
+  """
   coref_scores: [Scores]
-  has_nfh: Boolean
+
+  """
+  Is the span a coreference?
+  """
   is_coref: Boolean
-  is_nfh: Boolean
 }
 
 """
@@ -9561,11 +9386,6 @@ input STTConfig {
   encoding: Encoding
 
   """
-  Language code
-  """
-  language: String
-
-  """
   Audio Sample rate
   """
   sampleRate: Int
@@ -9576,9 +9396,9 @@ Output result
 """
 type STTResult {
   """
-  A list of alternatives
+  Transcription
   """
-  alternatives: [TextAlternative]
+  result: String
 }
 
 type subscription_root {
@@ -10269,66 +10089,6 @@ type subscription_root {
   ): history_aggregate!
 
   """
-  An array relationship
-  """
-  invites(
-    """
-    distinct select on columns
-    """
-    distinct_on: [invites_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [invites_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: invites_bool_exp
-  ): [invites!]!
-
-  """
-  An aggregate relationship
-  """
-  invites_aggregate(
-    """
-    distinct select on columns
-    """
-    distinct_on: [invites_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [invites_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: invites_bool_exp
-  ): invites_aggregate!
-
-  """
   fetch data from the table: "kv_scope_enum"
   """
   kv_scope_enum(
@@ -10769,16 +10529,6 @@ type subscription_root {
   ): utterances_aggregate!
 }
 
-"""
-Output text alternative
-"""
-type TextAlternative {
-  """
-  Output text
-  """
-  result: String
-}
-
 scalar timestamptz
 
 """
@@ -10800,17 +10550,45 @@ input timestamptz_comparison_exp {
 An individual token — i.e. a word, punctuation symbol, whitespace, etc.
 """
 type Token implements Container {
+  """
+  The rightmost token of this token’s syntactic descendants.
+  """
   ancestors: [Token]
+
+  """
+  A sequence of the token’s immediate syntactic children.
+  """
   children: [Token]
+
+  """
+  Brown cluster ID.
+  """
   cluster: Int
+
+  """
+  A tuple of coordinated tokens, not including the token itself.
+  """
   conjuncts: [Token]
+
+  """
+  Syntactic dependency relation.
+  """
   dep: String
 
   """
   The ending character offset of the token within the parent document.
   """
   end: Int
+
+  """
+  IOB code of named entity tag. 3 means the token begins an entity, 2 means it
+  is outside an entity, 1 means it is inside an entity, and 0 means no entity tag is set.
+  """
   ent_iob: String
+
+  """
+  Named entity type
+  """
   ent_type: String
   extension: TokenExtension
 
@@ -10818,36 +10596,140 @@ type Token implements Container {
   A boolean value indicating whether a word vector is associated with the object.
   """
   has_vector: Boolean
+
+  """
+  The syntactic parent, or "governor", of this token.
+  """
   head: Token
 
   """
   The index of the token within the parent document.
   """
   id: Int
+
+  """
+  Does the token consist of alphabetic characters?
+  """
   is_alpha: Boolean
+
+  """
+  Does the token consist of ASCII characters?
+  """
   is_ascii: Boolean
+
+  """
+  Is the token a bracket?
+  """
   is_bracket: Boolean
+
+  """
+  Is the token a currency symbol?
+  """
   is_currency: Boolean
+
+  """
+  Does the token consist of digits?
+  """
   is_digit: Boolean
+
+  """
+  Is the token a left punctuation mark, e.g. "(" ?
+  """
   is_left_punct: Boolean
+
+  """
+  Is the token in lowercase?
+  """
   is_lower: Boolean
+
+  """
+  Is the token out-of-vocabulary (i.e. does it not have a word vector)?
+  """
   is_oov: Boolean
+
+  """
+  Is the token punctuation?
+  """
   is_punct: Boolean
+
+  """
+  Is the token a quotation mark?
+  """
   is_quote: Boolean
+
+  """
+  Is the token a right punctuation mark, e.g. ")" ?
+  """
   is_right_punct: Boolean
+
+  """
+  A boolean value indicating whether the token starts a sentence
+  """
   is_sent_start: Boolean
+
+  """
+  Does the token consist of whitespace characters?
+  """
   is_space: Boolean
+
+  """
+  Is the token part of a “stop list”?
+  """
   is_stop: Boolean
+
+  """
+  Is the token in titlecase?
+  """
   is_title: Boolean
+
+  """
+  Is the token in uppercase?
+  """
   is_upper: Boolean
+
+  """
+  Language of the parent document’s vocabulary.
+  """
   lang: String
+
+  """
+  The leftmost token of this token’s syntactic descendants.
+  """
   left_edge: Token
+
+  """
+  The leftward immediate children of the word in the syntactic dependency parse.
+  """
   lefts: [Token]
+
+  """
+  Base form of the token, with no inflectional suffixes.
+  """
   lemma: String
+
+  """
+  Does the token resemble an email address?
+  """
   like_email: Boolean
+
+  """
+  Does the token represent a number? e.g. "10.9", "10", "ten", etc.
+  """
   like_num: Boolean
+
+  """
+  Does the token resemble a URL?
+  """
   like_url: Boolean
+
+  """
+  Lowercase form of the token
+  """
   lower: String
+
+  """
+  The token's norm, i.e. a normalized form of the token text
+  """
   norm: String
 
   """
@@ -10860,22 +10742,48 @@ type Token implements Container {
   Coarse-grained part-of-speech.
   """
   pos: String
+
+  """
+  Hash value of a length-N substring from the start of the token
+  """
   prefix: String
+
+  """
+  Smoothed log probability estimate of token's word type (context-independent entry in the vocabulary).
+  """
   prob: Float
+
+  """
+  The rightmost token of this token’s syntactic descendants.
+  """
   right_edge: Token
+
+  """
+  The rightward immediate children of the word in the syntactic dependency parse.
+  """
   rights: [Token]
 
   """
-  A scalar value indicating the positivity or negativity of the object.
+  Transform of the tokens’s string to show orthographic features. Alphabetic
+  characters are replaced by x or X, and numeric characters are replaced by d,
+  and sequences of the same character are truncated after length 4. For
+  example,"Xxxx"or"dd"
   """
-  sentiment: Float
   shape: String
 
   """
   The starting character offset of the token within the parent document.
   """
   start: Int
+
+  """
+  A sequence containing the token and all the token’s syntactic descendants.
+  """
   subtree: [Token]
+
+  """
+  Hash value of a length-N substring from the end of the token
+  """
   suffix: String
 
   """
@@ -10902,16 +10810,36 @@ type Token implements Container {
   The L2 norm of the document’s vector representation.
   """
   vector_norm: Float
+
+  """
+  Trailing space character if present
+  """
   whitespace: String
 }
 
 type TokenExtension {
+  """
+  All the clusters of corefering mentions in the doc
+  """
   coref_clusters: [CorefCluster]
+
+  """
+  Is the token in coreference?
+  """
   in_coref: Boolean
-  is_deter_nfh: Boolean
+
+  """
+  Is the token an implicit fused-head?
+  """
   is_implicit: Boolean
-  is_nfh: Boolean
-  nfh_head: String
+}
+
+"""
+Topic scores
+"""
+type TopicScore {
+  score: Float!
+  topic: String!
 }
 
 scalar tstzrange
@@ -10939,16 +10867,6 @@ input TTSConfig {
   Audio encoding
   """
   encoding: AudioEncoding
-
-  """
-  Language code
-  """
-  languageCode: String
-
-  """
-  Audio sample rate
-  """
-  sampleRate: Float
 
   """
   Voice gender
@@ -11338,12 +11256,6 @@ input utterances_variance_order_by {
   conversation_id: order_by
   end_user_id: order_by
 }
-
-"""
-Leverages the internal Python implmeentation of UUID (uuid.UUID) to provide native UUID objects
-in fields, resolvers and input.
-"""
-scalar UUID
 
 """
 A word match

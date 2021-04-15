@@ -1,18 +1,43 @@
-query parseText($text: String!) {
-  result: callNlpDoc(text: $text) {
-    categories: cats {
-      label
-      score
-    }
-    entities: ents {
-      label
+query parseText($input: String!) {
+  result: callNLU(input: $input) {
+    noun_chunks {
+      ...Subtree
       lemma
       text
     }
-    sentences: sents {
-      text
-      label
+    entities {
+      ...Subtree
       lemma
+      text
+    }
+    sentences {
+      ...Subtree
+      text
+      lemma
+    }
+  }
+}
+
+fragment SubtreeFields on NLUToken {
+  dependency
+  entity_type
+  lemma
+  normalized
+  part_of_speech
+  tag
+}
+
+fragment Subtree on NLUSpan {
+  subtree {
+    ...SubtreeFields
+    subtree {
+      ...SubtreeFields
+      subtree {
+        ...SubtreeFields
+        subtree {
+          ...SubtreeFields
+        }
+      }
     }
   }
 }

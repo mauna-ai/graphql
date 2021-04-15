@@ -1,6 +1,7 @@
-query parseContext($turns: [ContextObject!]!) {
-  result: callParseContext(turns: $turns) {
-    context {
+query parseContext($history: [Turn!]!) {
+  result: callParseContext(history: $history) {
+    context: result {
+      input
       mentions {
         evokes
         phrase

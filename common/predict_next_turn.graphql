@@ -1,6 +1,8 @@
-query predictNextTurn($history: [String!]!, $alternatives: [String!]!) {
-  result: callNextDialogTurn(history: $history, alternatives: $alternatives) {
-    nextTurn: alternative
-    confidence
+query predictNextTurn($history: [Turn!]!, $input: [String!]!) {
+  result: callNextDialogTurn(history: $history, input: $input) {
+    nextTurns: result {
+      alternative
+      score
+    }
   }
 }
