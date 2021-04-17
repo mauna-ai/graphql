@@ -1,29 +1,3 @@
-# FIXME: Unfortunately, fragments are not supported by either codegen framework
-
-# fragment SubtreeFields on NLUToken {
-#   dependency
-#   entity_type
-#   lemma
-#   normalized
-#   part_of_speech
-#   tag
-# }
-#
-# fragment Subtree on NLUSpan {
-#   subtree {
-#     ...SubtreeFields
-#     subtree {
-#       ...SubtreeFields
-#       subtree {
-#         ...SubtreeFields
-#         subtree {
-#           ...SubtreeFields
-#         }
-#       }
-#     }
-#   }
-# }
-
 query parseText($input: String!) {
   result: callNLU(input: $input) {
     noun_chunks {
@@ -148,3 +122,29 @@ query parseText($input: String!) {
     }
   }
 }
+
+# FIXME: Unfortunately, fragments are not supported by either codegen framework
+
+# fragment SubtreeFields on NLUToken {
+#   dependency
+#   entity_type
+#   lemma
+#   normalized
+#   part_of_speech
+#   tag
+# }
+#
+# fragment Subtree on NLUSpan {
+#   subtree {
+#     ...SubtreeFields
+#     subtree {
+#       ...SubtreeFields
+#       subtree {
+#         ...SubtreeFields
+#         subtree {
+#           ...SubtreeFields
+#         }
+#       }
+#     }
+#   }
+# }
