@@ -4616,7 +4616,7 @@ input InputPipe {
   """
   Service query name
   """
-  op: String
+  service: String
 
   """
   Transform logic
@@ -4637,6 +4637,10 @@ input Int_comparison_exp {
   _lte: Int
   _neq: Int
   _nin: [Int!]
+}
+
+type InvitationOutput {
+  status: String!
 }
 
 """
@@ -6127,6 +6131,11 @@ type mutation_root {
     """
     object: utterances_insert_input!
   ): utterances
+
+  """
+  Send Prefinery invitation
+  """
+  sendInvitation(message: String, recipient_email: String!): InvitationOutput
 
   """
   update data of the table: "apps"
