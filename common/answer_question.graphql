@@ -1,8 +1,5 @@
-query answerQuestion($input: String!, $context: String!) {
-  result: callQA(input: $input, context: $context, allow_impossible: true) {
-    answers: result {
-      answer
-      score
-    }
+query answerQuestion($input: String!, $context: String!, $min_length: Int!) {
+  result: callQA(input: $input, context: $context, min_length: $min_length) {
+    answer: result
   }
 }
