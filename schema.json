@@ -701,22 +701,41 @@
         ]
       },
       {
+        "kind": "INPUT_OBJECT",
+        "name": "ContextObject",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "content",
+            "description": "Dialog turn content",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
         "name": "ContextResult",
         "description": "SLING document container",
         "fields": [
           {
-            "name": "result",
+            "name": "context",
             "description": "SLING document",
             "args": [],
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "SlingDocument",
-                "ofType": null
-              }
+              "kind": "OBJECT",
+              "name": "SlingDocument",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -1065,7 +1084,7 @@
             "deprecationReason": null
           },
           {
-            "name": "service",
+            "name": "op",
             "description": "Service query name",
             "type": {
               "kind": "SCALAR",
@@ -1225,33 +1244,6 @@
           }
         ],
         "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "InvitationOutput",
-        "description": null,
-        "fields": [
-          {
-            "name": "status",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -2662,7 +2654,7 @@
         "description": "Output result",
         "fields": [
           {
-            "name": "result",
+            "name": "ssml",
             "description": "Rendered SSML",
             "args": [],
             "type": {
@@ -2698,6 +2690,42 @@
             "deprecationReason": null
           },
           {
+            "name": "languageCode",
+            "description": "Language code",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "maxAlternatives",
+            "description": "Maximum number of the output alternatives",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "profanityFilter",
+            "description": "Profanity filter flag",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "sampleRate",
             "description": "Audio Sample rate",
             "type": {
@@ -2720,13 +2748,17 @@
         "description": "Output result",
         "fields": [
           {
-            "name": "result",
-            "description": "Transcription",
+            "name": "alternatives",
+            "description": "A list of alternatives",
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "TextAlternative",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -2974,6 +3006,12 @@
             "deprecationReason": null
           },
           {
+            "name": "faq_service",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "intent_matcher",
             "description": null,
             "isDeprecated": false,
@@ -3010,6 +3048,12 @@
             "deprecationReason": null
           },
           {
+            "name": "topic_classification",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "turn_prediction",
             "description": null,
             "isDeprecated": false,
@@ -3030,18 +3074,6 @@
         "description": "SLING document",
         "fields": [
           {
-            "name": "input",
-            "description": "Document text",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "mentions",
             "description": "List of mentions",
             "args": [],
@@ -3053,6 +3085,18 @@
                 "name": "SlingMention",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "text",
+            "description": "Document text",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -3676,7 +3720,31 @@
             "deprecationReason": null
           },
           {
-            "name": "gender",
+            "name": "languageCode",
+            "description": "Language code",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sampleRate",
+            "description": "Audio sample rate",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "voiceGender",
             "description": "Voice gender",
             "type": {
               "kind": "SCALAR",
@@ -3698,8 +3766,31 @@
         "description": "Output result",
         "fields": [
           {
-            "name": "result",
+            "name": "audioB64",
             "description": "Resulting audio as a base64 string",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "TextAlternative",
+        "description": "Output text alternative",
+        "fields": [
+          {
+            "name": "transcript",
+            "description": "Output text",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -31329,47 +31420,6 @@
             "deprecationReason": null
           },
           {
-            "name": "sendInvitation",
-            "description": "Send Prefinery invitation",
-            "args": [
-              {
-                "name": "message",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "recipient_email",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
-            "type": {
-              "kind": "OBJECT",
-              "name": "InvitationOutput",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "update_apps",
             "description": "update data of the table: \"apps\"",
             "args": [
@@ -35152,7 +35202,7 @@
             "description": "Apply voice CSS to the SSML input",
             "args": [
               {
-                "name": "css",
+                "name": "styled_ssml",
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
@@ -35164,7 +35214,7 @@
                 "deprecationReason": null
               },
               {
-                "name": "ssml",
+                "name": "voice_css",
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
@@ -35578,7 +35628,31 @@
             "description": "Parse ACE sentence",
             "args": [
               {
-                "name": "input",
+                "name": "format",
+                "description": null,
+                "type": {
+                  "kind": "ENUM",
+                  "name": "ACEOutputType",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "guess",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "text",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -35588,18 +35662,6 @@
                     "name": "String",
                     "ofType": null
                   }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "type",
-                "description": null,
-                "type": {
-                  "kind": "ENUM",
-                  "name": "ACEOutputType",
-                  "ofType": null
                 },
                 "defaultValue": null,
                 "isDeprecated": false,
@@ -35619,19 +35681,15 @@
             "description": "Parse frame semantics for a list of dialog turns",
             "args": [
               {
-                "name": "history",
+                "name": "turns",
                 "description": "List of possible turns",
                 "type": {
                   "kind": "LIST",
                   "name": null,
                   "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "INPUT_OBJECT",
-                      "name": "Turn",
-                      "ofType": null
-                    }
+                    "kind": "INPUT_OBJECT",
+                    "name": "ContextObject",
+                    "ofType": null
                   }
                 },
                 "defaultValue": null,
@@ -35640,9 +35698,13 @@
               }
             ],
             "type": {
-              "kind": "OBJECT",
-              "name": "ContextResult",
-              "ofType": null
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ContextResult",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -35853,19 +35915,7 @@
             "description": "Convert speech to text",
             "args": [
               {
-                "name": "config",
-                "description": null,
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "STTConfig",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "input",
+                "name": "audioB64",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -35879,10 +35929,22 @@
                 "defaultValue": null,
                 "isDeprecated": false,
                 "deprecationReason": null
+              },
+              {
+                "name": "config",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "STTConfig",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
-              "kind": "NON_NULL",
+              "kind": "LIST",
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
@@ -35910,7 +35972,7 @@
                 "deprecationReason": null
               },
               {
-                "name": "input",
+                "name": "text",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",

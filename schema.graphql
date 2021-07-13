@@ -1840,6 +1840,13 @@ interface Container {
   vector_norm: Float
 }
 
+input ContextObject {
+  """
+  Dialog turn content
+  """
+  content: String
+}
+
 """
 SLING document container
 """
@@ -1847,7 +1854,7 @@ type ContextResult {
   """
   SLING document
   """
-  result: [SlingDocument]
+  context: SlingDocument
 }
 
 """
@@ -4601,7 +4608,7 @@ input InputPipe {
   """
   Service query name
   """
-  service: String
+  op: String
 
   """
   Transform logic
@@ -4622,10 +4629,6 @@ input Int_comparison_exp {
   _lte: Int
   _neq: Int
   _nin: [Int!]
-}
-
-type InvitationOutput {
-  status: String!
 }
 
 """
@@ -6116,11 +6119,6 @@ type mutation_root {
     """
     object: utterances_insert_input!
   ): utterances
-
-  """
-  Send Prefinery invitation
-  """
-  sendInvitation(message: String, recipient_email: String!): InvitationOutput
 
   """
   update data of the table: "apps"
@@ -7694,7 +7692,7 @@ type query_root {
   """
   Apply voice CSS to the SSML input
   """
-  callApplyVoiceCSS(css: String, ssml: String): SSMLResult
+  callApplyVoiceCSS(styled_ssml: String, voice_css: String): SSMLResult
 
   """
   Perform chit chat
@@ -7783,7 +7781,7 @@ type query_root {
   """
   Parse ACE sentence
   """
-  callParseACE(input: String!, type: ACEOutputType): ACEResult
+  callParseACE(format: ACEOutputType, guess: Boolean, text: String!): ACEResult
 
   """
   Parse frame semantics for a list of dialog turns
@@ -7792,8 +7790,8 @@ type query_root {
     """
     List of possible turns
     """
-    history: [Turn!]
-  ): ContextResult
+    turns: [ContextObject]
+  ): [ContextResult]
 
   """
   Predict relations
@@ -7847,12 +7845,12 @@ type query_root {
   """
   Convert speech to text
   """
-  callSpeechToText(config: STTConfig, input: String!): STTResult!
+  callSpeechToText(audioB64: String!, config: STTConfig): [STTResult]
 
   """
   Convert text to speech
   """
-  callTextToSpeech(config: TTSConfig, input: String!): TTSResult
+  callTextToSpeech(config: TTSConfig, text: String!): TTSResult
 
   """
   fetch data from the table: "conceptnet.data"
@@ -8933,12 +8931,14 @@ enum ServiceName {
   compose_services
   context_frame_parser
   docs
+  faq_service
   intent_matcher
   nlu_service
   paraphrase_sentences
   sentence_similarity
   speech_to_text
   text_to_speech
+  topic_classification
   turn_prediction
   voice_css_render
 }
@@ -8948,14 +8948,14 @@ SLING document
 """
 type SlingDocument {
   """
-  Document text
-  """
-  input: String
-
-  """
   List of mentions
   """
   mentions: [SlingMention]
+
+  """
+  Document text
+  """
+  text: String
 }
 
 """
@@ -9303,7 +9303,7 @@ type SSMLResult {
   """
   Rendered SSML
   """
-  result: String
+  ssml: String
 }
 
 """
@@ -9381,6 +9381,21 @@ input STTConfig {
   encoding: Encoding
 
   """
+  Language code
+  """
+  languageCode: String
+
+  """
+  Maximum number of the output alternatives
+  """
+  maxAlternatives: Int
+
+  """
+  Profanity filter flag
+  """
+  profanityFilter: Boolean
+
+  """
   Audio Sample rate
   """
   sampleRate: Int
@@ -9391,9 +9406,9 @@ Output result
 """
 type STTResult {
   """
-  Transcription
+  A list of alternatives
   """
-  result: String
+  alternatives: [TextAlternative]
 }
 
 type subscription_root {
@@ -10524,6 +10539,16 @@ type subscription_root {
   ): utterances_aggregate!
 }
 
+"""
+Output text alternative
+"""
+type TextAlternative {
+  """
+  Output text
+  """
+  transcript: String
+}
+
 scalar timestamptz
 
 """
@@ -10864,9 +10889,19 @@ input TTSConfig {
   encoding: AudioEncoding
 
   """
+  Language code
+  """
+  languageCode: String
+
+  """
+  Audio sample rate
+  """
+  sampleRate: Float
+
+  """
   Voice gender
   """
-  gender: String
+  voiceGender: String
 }
 
 """
@@ -10876,7 +10911,7 @@ type TTSResult {
   """
   Resulting audio as a base64 string
   """
-  result: String
+  audioB64: String
 }
 
 """
